@@ -64,7 +64,7 @@ export function HomePage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0">
-          <img 
+          <img
             src="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1920"
             alt="Spice plantation"
             className="w-full h-full object-cover"
@@ -80,7 +80,7 @@ export function HomePage() {
             transition={{ duration: 1 }}
           >
             <h1 className="text-6xl md:text-7xl lg:text-8xl mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Golden Spices
+              Ceylon Golden Spices
             </h1>
             <p className="text-xl md:text-2xl mb-3 text-[#D4AF37]">
               Authentic Ceylon Heritage | Export Excellence Since Ages
@@ -120,7 +120,7 @@ export function HomePage() {
           <div className="grid md:grid-cols-5 gap-12 items-center">
             {/* Video Section */}
             <div className="md:col-span-3">
-              <VideoPlayer 
+              <VideoPlayer
                 thumbnail="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1200"
                 title="2,000 Years of Ceylon Spice Legacy"
                 duration="12:45"
@@ -135,11 +135,11 @@ export function HomePage() {
                   The Spice Route Heritage
                 </h2>
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  For over 2,000 years, Ceylon (Sri Lanka) has been the world's most coveted source of authentic spices. 
+                  For over 2,000 years, Ceylon (Sri Lanka) has been the world's most coveted source of authentic spices.
                   Our spices carry the legacy of ancient spice traders who traversed oceans to bring the treasures of our island to the world.
                 </p>
                 <p className="text-gray-700 mb-8 leading-relaxed">
-                  Today, we continue this proud tradition, combining time-honored cultivation methods with modern quality standards 
+                  Today, we continue this proud tradition, combining time-honored cultivation methods with modern quality standards
                   to deliver premium Ceylon spices to discerning global buyers.
                 </p>
                 <button className="flex items-center gap-2 text-[#D4AF37] hover:text-[#C09F2F] font-semibold transition-colors">
@@ -147,7 +147,7 @@ export function HomePage() {
                   Watch Our Story
                 </button>
               </div>
-              
+
               {/* Decorative Element */}
               <div className="mt-8 flex items-center gap-3">
                 <div className="text-[#D4AF37] text-3xl">✿</div>
@@ -185,7 +185,7 @@ export function HomePage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  
+
                   {/* Video Badge */}
                   {hoveredProduct === index && (
                     <motion.div
@@ -205,7 +205,7 @@ export function HomePage() {
                     {product.title}
                   </h3>
                   <p className="text-[#D4AF37] font-semibold mb-4">{product.count}</p>
-                  
+
                   {/* Icons */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {product.icons.map((icon, i) => (
@@ -238,13 +238,13 @@ export function HomePage() {
 
           {/* Large Video Player */}
           <div className="max-w-6xl mx-auto">
-            <VideoPlayer 
+            <VideoPlayer
               thumbnail="https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=1600"
               title="Complete Production Journey: 60-Second Tour"
               duration="1:30"
               className="h-[600px]"
             />
-            
+
             {/* Process Timeline */}
             <div className="mt-8 grid grid-cols-2 md:grid-cols-6 gap-4">
               {[
@@ -362,7 +362,7 @@ export function HomePage() {
               { thumb: 'https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=400', title: 'Factory Tour', duration: '5:30' }
             ].map((video, index) => (
               <div key={index} className="group cursor-pointer">
-                <VideoPlayer 
+                <VideoPlayer
                   thumbnail={video.thumb}
                   title={video.title}
                   duration={video.duration}
