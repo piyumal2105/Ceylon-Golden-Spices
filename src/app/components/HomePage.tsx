@@ -1,39 +1,66 @@
 import { motion } from 'motion/react';
-import { VideoPlayer } from './VideoPlayer';
-import { ChevronDown, Leaf, Award, Globe, Package, Play } from 'lucide-react';
-import { useState } from 'react';
+import { ChevronDown, Leaf, Award, Globe, Package, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
-export function HomePage() {
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+interface HomePageProps {
+  onNavigate: (page: string) => void;
+}
+
+export function HomePage({ onNavigate }: HomePageProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const products = [
     {
       title: 'Ceylon Golden Spices',
       count: '8 Premium Varieties',
-      image: 'https://images.unsplash.com/photo-1682482002999-654860dfcb24?w=600',
-      hoverVideo: 'https://images.unsplash.com/photo-1631021967400-fbd3f722101c?w=600',
+      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800',
       icons: ['Cinnamon', 'Clove', 'Pepper', 'Cardamom']
     },
     {
       title: 'Ceylon Golden Herbal',
       count: '5 Wellness Essentials',
-      image: 'https://images.unsplash.com/photo-1656850815262-2eed4ed82625?w=600',
-      hoverVideo: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=600',
+      image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=800',
       icons: ['Moringa', 'Curry Leaves', 'Coffee']
     },
     {
       title: 'Pure Ceylon Tea',
       count: '5 Exquisite Blends',
-      image: 'https://images.unsplash.com/photo-1722653510627-29f99f804efd?w=600',
-      hoverVideo: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=600',
+      image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800',
       icons: ['Black Tea', 'Green Tea', 'Herbal']
     },
     {
-      title: 'Dehydrated Tropical Fruits',
+      title: 'Dehydrated Fruits',
       count: '5 Exotic Flavors + Cashews',
-      image: 'https://images.unsplash.com/photo-1633706974456-f24d52958708?w=600',
-      hoverVideo: 'https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=600',
+      image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800',
       icons: ['Mango', 'Pineapple', 'Papaya']
+    }
+  ];
+
+  const carouselSlides = [
+    {
+      image: 'https://images.unsplash.com/photo-1599909533730-f9f49c5eb4cf?w=1600',
+      title: 'Cultivation',
+      description: 'Spice cultivation in traditional Ceylon gardens'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=1600',
+      title: 'Harvesting',
+      description: 'Hand-picking premium quality spices'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1596040033229-a0b3b83b6d9e?w=1600',
+      title: 'Processing',
+      description: 'Traditional drying and processing methods'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=1600',
+      title: 'Quality Control',
+      description: 'Rigorous quality inspection and grading'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=1600',
+      title: 'Export Ready',
+      description: 'Premium packaging for global markets'
     }
   ];
 
@@ -58,11 +85,28 @@ export function HomePage() {
     }
   ];
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
+
+  // Auto-play carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Video Background */}
+      {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
+        {/* Background Image */}
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1920"
@@ -79,20 +123,26 @@ export function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <h1 className="text-6xl md:text-7xl lg:text-8xl mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl mb-4 sm:mb-6 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
               Ceylon Golden Spices
             </h1>
-            <p className="text-xl md:text-2xl mb-3 text-[#D4AF37]">
+            <p className="text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-[#D4AF37]">
               Authentic Ceylon Heritage | Export Excellence Since Ages
             </p>
-            <p className="text-lg md:text-xl mb-8 text-gray-200">
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-200">
               Nature's Gold from the Pearl of the Indian Ocean
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-2xl">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <button
+                onClick={() => onNavigate('products')}
+                className="w-full sm:w-auto bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all hover:scale-105 shadow-2xl"
+              >
                 Explore Our Collection
               </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-[#7B3F00] px-8 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105">
+              <button
+                onClick={() => onNavigate('contact')}
+                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-[#7B3F00] px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all hover:scale-105"
+              >
                 Request Export Quote
               </button>
             </div>
@@ -103,56 +153,46 @@ export function HomePage() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white hidden sm:block"
         >
           <ChevronDown className="w-8 h-8" />
         </motion.div>
-
-        {/* Mute/Unmute Button */}
-        <button className="absolute bottom-8 right-8 bg-black/50 hover:bg-black/70 text-white px-4 py-2 rounded-full text-sm transition-all">
-          🔇 Tap to unmute
-        </button>
       </section>
 
-      {/* Heritage Statement with Video */}
-      <section className="py-20 bg-white">
+      {/* Heritage Statement with Static Image */}
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-5 gap-12 items-center">
-            {/* Video Section */}
+          <div className="grid md:grid-cols-5 gap-8 sm:gap-10 md:gap-12 items-center">
+            {/* Image Section */}
             <div className="md:col-span-3">
-              <VideoPlayer
-                thumbnail="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1200"
-                title="2,000 Years of Ceylon Spice Legacy"
-                duration="12:45"
-                className="h-[500px]"
-              />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[300px] sm:h-[400px] md:h-[500px]">
+                <img
+                  src="https://images.unsplash.com/photo-1596040033229-a0b3b83b6d9e?w=1200"
+                  alt="Traditional Ceylon spice heritage"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    2,000 Years of Heritage
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-200">The legacy of Ceylon spice trade</p>
+                </div>
+              </div>
             </div>
 
             {/* Text Section */}
             <div className="md:col-span-2">
-              <div className="border-l-4 border-[#D4AF37] pl-6">
-                <h2 className="text-4xl mb-6 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
+              <div className="border-l-4 border-[#D4AF37] pl-4 sm:pl-6">
+                <h2 className="text-3xl sm:text-4xl mb-4 sm:mb-6 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
                   The Spice Route Heritage
                 </h2>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  For over 2,000 years, Ceylon (Sri Lanka) has been the world's most coveted source of authentic spices.
-                  Our spices carry the legacy of ancient spice traders who traversed oceans to bring the treasures of our island to the world.
+                <p className="text-gray-700 mb-4 sm:mb-6 leading-relaxed text-justify">
+                  For over 2,000 years, Ceylon (Sri Lanka) has been the world's most coveted source of authentic spices. Our spices carry the legacy of ancient spice traders who traversed oceans to bring the treasures of our island to the world.
                 </p>
-                <p className="text-gray-700 mb-8 leading-relaxed">
-                  Today, we continue this proud tradition, combining time-honored cultivation methods with modern quality standards
-                  to deliver premium Ceylon spices to discerning global buyers.
+                <p className="text-gray-700 mb-6 sm:mb-8 leading-relaxed text-justify">
+                  Today, we continue this proud tradition, combining time-honored cultivation methods with modern quality standards to deliver premium Ceylon spices to discerning global buyers.
                 </p>
-                <button className="flex items-center gap-2 text-[#D4AF37] hover:text-[#C09F2F] font-semibold transition-colors">
-                  <Play className="w-5 h-5" />
-                  Watch Our Story
-                </button>
-              </div>
-
-              {/* Decorative Element */}
-              <div className="mt-8 flex items-center gap-3">
-                <div className="text-[#D4AF37] text-3xl">✿</div>
-                <div className="text-[#D4AF37] text-2xl">❀</div>
-                <div className="text-[#D4AF37] text-3xl">✺</div>
               </div>
             </div>
           </div>
@@ -160,62 +200,54 @@ export function HomePage() {
       </section>
 
       {/* Product Universe */}
-      <section className="py-20 bg-[#FFF8E7]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
+      <section className="py-12 sm:py-16 md:py-20 bg-[#FFF8E7]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
               Our Premium Collection
             </h2>
-            <p className="text-xl text-gray-700">Authentic Ceylon products for global markets</p>
+            <p className="text-lg sm:text-xl text-gray-700">Authentic Ceylon products for global markets</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6">
             {products.map((product, index) => (
               <motion.div
                 key={index}
-                onHoverStart={() => setHoveredProduct(index)}
-                onHoverEnd={() => setHoveredProduct(null)}
-                className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer w-full"
+                whileHover={{ y: -8 }}
               >
-                {/* Product Image/Video */}
+                {/* Product Image */}
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={hoveredProduct === index ? product.hoverVideo : product.image}
+                    src={product.image}
                     alt={product.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-
-                  {/* Video Badge */}
-                  {hoveredProduct === index && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="absolute top-4 right-4 bg-[#D4AF37] text-white px-3 py-1 rounded-full text-xs flex items-center gap-1"
-                    >
-                      <Play className="w-3 h-3" fill="white" />
-                      Preview
-                    </motion.div>
-                  )}
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-2xl mb-2 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
+                {/* Content - Fixed height to align buttons */}
+                <div className="p-6 h-60 flex flex-col">
+                  <h3 className="text-lg lg:text-xl mb-2 text-[#7B3F00] leading-tight whitespace-nowrap overflow-hidden text-ellipsis" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {product.title}
                   </h3>
-                  <p className="text-[#D4AF37] font-semibold mb-4">{product.count}</p>
+                  <br />
+                  <p className="text-[#D4AF37] font-semibold mb-3 text-sm">{product.count}</p>
 
-                  {/* Icons */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  {/* Icons - compact layout in single row */}
+                  <div className="flex flex-wrap gap-1 mb-auto">
                     {product.icons.map((icon, i) => (
-                      <span key={i} className="text-xs bg-[#FFF8E7] text-[#7B3F00] px-3 py-1 rounded-full">
+                      <span key={i} className="text-[11.5px] bg-[#FFF8E7] text-[#7B3F00] px-1.5 py-1 rounded-full whitespace-nowrap flex items-center justify-center">
                         {icon}
                       </span>
                     ))}
                   </div>
 
-                  <button className="flex items-center gap-2 text-[#D4AF37] hover:text-[#C09F2F] font-semibold transition-colors group-hover:translate-x-2 transition-transform">
+                  {/* Button always at bottom with no margin */}
+                  <button
+                    onClick={() => onNavigate('products')}
+                    className="flex items-center gap-2 text-[#D4AF37] hover:text-[#C09F2F] font-semibold transition-all group-hover:translate-x-2 text-sm"
+                  >
                     Discover More
                     <span>→</span>
                   </button>
@@ -226,41 +258,93 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Process Video Showcase */}
-      <section className="py-20 bg-white">
+      {/* Image Carousel - From Garden to Global Markets */}
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
               From Garden to Global Markets
             </h2>
-            <p className="text-xl text-gray-700">Experience our complete quality journey</p>
+            <p className="text-lg sm:text-xl text-gray-700">Experience our complete quality journey</p>
           </div>
 
-          {/* Large Video Player */}
+          {/* Carousel Container */}
           <div className="max-w-6xl mx-auto">
-            <VideoPlayer
-              thumbnail="https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=1600"
-              title="Complete Production Journey: 60-Second Tour"
-              duration="1:30"
-              className="h-[600px]"
-            />
+            <div className="relative">
+              {/* Main Image */}
+              <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                <motion.img
+                  key={currentSlide}
+                  src={carouselSlides[currentSlide].image}
+                  alt={carouselSlides[currentSlide].title}
+                  className="w-full h-full object-cover"
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
-            {/* Process Timeline */}
-            <div className="mt-8 grid grid-cols-2 md:grid-cols-6 gap-4">
-              {[
-                { time: '0:00', label: 'Cultivation' },
-                { time: '0:15', label: 'Harvesting' },
-                { time: '0:30', label: 'Quality Check' },
-                { time: '0:45', label: 'Processing' },
-                { time: '1:00', label: 'Packaging' },
-                { time: '1:15', label: 'Export' }
-              ].map((stage, index) => (
+                {/* Slide Content */}
+                <motion.div
+                  key={`content-${currentSlide}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white"
+                >
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    {carouselSlides[currentSlide].title}
+                  </h3>
+                  <p className="text-base sm:text-lg text-gray-200">{carouselSlides[currentSlide].description}</p>
+                </motion.div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-[#7B3F00] p-2 sm:p-3 rounded-full shadow-lg transition-all hover:scale-110"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-[#7B3F00] p-2 sm:p-3 rounded-full shadow-lg transition-all hover:scale-110"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              {/* Dots Indicator */}
+              <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+                {carouselSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${currentSlide === index ? 'bg-[#D4AF37] w-6 sm:w-8' : 'bg-white/60 hover:bg-white/80'
+                      }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Thumbnail Navigation */}
+            <div className="mt-4 sm:mt-6 grid grid-cols-5 gap-2 sm:gap-4">
+              {carouselSlides.map((slide, index) => (
                 <button
                   key={index}
-                  className="bg-[#FFF8E7] hover:bg-[#D4AF37] hover:text-white p-3 rounded-lg transition-all text-center group"
+                  onClick={() => setCurrentSlide(index)}
+                  className={`relative h-16 sm:h-20 md:h-24 rounded-lg overflow-hidden transition-all ${currentSlide === index ? 'ring-4 ring-[#D4AF37] scale-105' : 'opacity-60 hover:opacity-100'
+                    }`}
                 >
-                  <div className="text-sm font-semibold text-[#D4AF37] group-hover:text-white">{stage.time}</div>
-                  <div className="text-xs text-[#7B3F00] group-hover:text-white">{stage.label}</div>
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20"></div>
                 </button>
               ))}
             </div>
@@ -320,79 +404,49 @@ export function HomePage() {
       </section>
 
       {/* Quality Promise Banner */}
-      <section className="py-12 bg-gradient-to-r from-[#D4AF37] to-[#C09F2F] text-white">
+      <section className="py-10 sm:py-12 bg-gradient-to-r from-[#D4AF37] to-[#C09F2F] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h3 className="text-3xl md:text-4xl mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 px-2" style={{ fontFamily: 'Playfair Display, serif' }}>
               From Sri Lanka's Ancient Spice Gardens to Your Global Markets
             </h3>
-            <div className="flex flex-wrap justify-center gap-12">
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12">
               <div>
-                <div className="text-4xl font-bold mb-2">25+</div>
-                <div className="text-sm">Years Experience</div>
+                <div className="text-3xl sm:text-4xl font-bold mb-2">25+</div>
+                <div className="text-xs sm:text-sm">Years Experience</div>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">50+</div>
-                <div className="text-sm">Countries Served</div>
+                <div className="text-3xl sm:text-4xl font-bold mb-2">50+</div>
+                <div className="text-xs sm:text-sm">Countries Served</div>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">27</div>
-                <div className="text-sm">Premium Products</div>
+                <div className="text-3xl sm:text-4xl font-bold mb-2">27</div>
+                <div className="text-xs sm:text-sm">Premium Products</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Video Gallery Section */}
-      <section className="py-20 bg-[#FFF8E7]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Behind the Scenes
-            </h2>
-            <p className="text-xl text-gray-700">Explore our heritage and process</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { thumb: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=400', title: 'Plantation Tours', duration: '3:20' },
-              { thumb: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=400', title: 'Harvesting Process', duration: '2:45' },
-              { thumb: 'https://images.unsplash.com/photo-1666039438492-02a95ecd70c3?w=400', title: 'Quality Control', duration: '4:15' },
-              { thumb: 'https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=400', title: 'Factory Tour', duration: '5:30' }
-            ].map((video, index) => (
-              <div key={index} className="group cursor-pointer">
-                <VideoPlayer
-                  thumbnail={video.thumb}
-                  title={video.title}
-                  duration={video.duration}
-                  className="h-48"
-                />
-                <h4 className="mt-3 text-lg font-semibold text-[#7B3F00] group-hover:text-[#D4AF37] transition-colors">
-                  {video.title}
-                </h4>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Package className="w-16 h-16 text-[#D4AF37] mx-auto mb-6" />
-            <h2 className="text-4xl md:text-5xl mb-6 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <Package className="w-12 h-12 sm:w-16 sm:h-16 text-[#D4AF37] mx-auto mb-4 sm:mb-6" />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 text-[#7B3F00] px-2" style={{ fontFamily: 'Playfair Display, serif' }}>
               Ready to Experience Authentic Ceylon Spices?
             </h2>
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-lg sm:text-xl text-gray-700 mb-6 sm:mb-8 text-center px-2">
               Connect with our export team to discuss your requirements
             </p>
-            <button className="bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-xl">
+            <button
+              onClick={() => onNavigate('contact')}
+              className="bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all hover:scale-105 shadow-xl"
+            >
               Request Export Quote Now
             </button>
           </motion.div>
