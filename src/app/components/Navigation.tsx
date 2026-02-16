@@ -29,7 +29,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div 
+          <div
             onClick={() => handleNavigate('home')}
             className="flex items-center gap-3 cursor-pointer group"
           >
@@ -48,11 +48,10 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
               <button
                 key={item.value}
                 onClick={() => handleNavigate(item.value)}
-                className={`relative text-sm font-medium transition-colors ${
-                  currentPage === item.value
-                    ? 'text-[#D4AF37]'
-                    : 'text-[#7B3F00] hover:text-[#D4AF37]'
-                }`}
+                className={`relative text-sm font-medium transition-colors ${currentPage === item.value
+                  ? 'text-[#D4AF37]'
+                  : 'text-[#7B3F00] hover:text-[#D4AF37]'
+                  }`}
               >
                 {item.label}
                 {currentPage === item.value && (
@@ -95,11 +94,10 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
                 <button
                   key={item.value}
                   onClick={() => handleNavigate(item.value)}
-                  className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${
-                    currentPage === item.value
-                      ? 'bg-[#D4AF37] text-white'
-                      : 'text-[#7B3F00] hover:bg-[#FFF8E7]'
-                  }`}
+                  className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${currentPage === item.value
+                    ? 'bg-[#D4AF37] text-white'
+                    : 'text-[#7B3F00] hover:bg-[#FFF8E7]'
+                    }`}
                 >
                   {item.label}
                 </button>
