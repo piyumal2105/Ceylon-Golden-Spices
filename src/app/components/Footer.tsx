@@ -35,7 +35,7 @@ export function Footer({ onNavigate }: FooterProps) {
       {/* Layer 1 - Traditional Art Section with Spice Icons */}
       <div className="bg-[#0A2647] relative overflow-hidden">
         {/* Spice-themed Background Pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1621958623183-15aba9c3e68a?w=200')`,
@@ -43,7 +43,7 @@ export function Footer({ onNavigate }: FooterProps) {
             backgroundRepeat: 'repeat'
           }}
         ></div>
-        
+
         {/* Traditional Pattern Border */}
         <div className="h-40 flex items-center justify-center relative">
           {/* Background Spice Icons Pattern */}
@@ -59,7 +59,7 @@ export function Footer({ onNavigate }: FooterProps) {
               })}
             </div>
           </div>
-          
+
           {/* Main Decorative Elements */}
           <div className="relative z-10 flex items-center justify-center gap-8 md:gap-16 flex-wrap px-4">
             {/* Left Decorative - Spice Icons */}
@@ -69,7 +69,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <SpiceIcon emoji="🌿" className="text-3xl md:text-4xl" />
               <SpiceIcon emoji="🍃" className="text-xl md:text-2xl" />
             </div>
-            
+
             {/* Center Logo Medallion */}
             <div className="relative">
               <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-[#D4AF37] to-[#C09F2F] rounded-full flex items-center justify-center shadow-2xl border-4 border-[#2A4A5A]">
@@ -83,7 +83,7 @@ export function Footer({ onNavigate }: FooterProps) {
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-[#D4AF37]/20 rounded-full blur-xl"></div>
             </div>
-            
+
             {/* Right Decorative - Spice Icons */}
             <div className="hidden md:flex items-center gap-3">
               <SpiceIcon emoji="🍃" className="text-xl md:text-2xl" />
@@ -98,7 +98,7 @@ export function Footer({ onNavigate }: FooterProps) {
       {/* Layer 2 - Main Footer Content */}
       <div className="bg-[#0A2647] text-white relative">
         {/* Subtle spice icons in the background */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1708441843795-38f34ca4b089?w=400')`,
@@ -106,7 +106,7 @@ export function Footer({ onNavigate }: FooterProps) {
             backgroundRepeat: 'repeat'
           }}
         ></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Column 1 - Brand & About */}
@@ -211,7 +211,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     <p className="text-justify">Buddhi Product, Imperial Spices (Pvt) Ltd<br />121 A, Biyagama Road, Kelaniya, Sri Lanka</p>
                   </div>
                 </div>
-                
+
                 <div>
                   <p className="font-semibold text-white mb-1">Factory:</p>
                   <div className="flex gap-2">
@@ -219,7 +219,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     <p className="text-justify">151, Biyagama Road, Kelaniya, Sri Lanka</p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2 pt-2">
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-[#D4AF37]" />
@@ -255,7 +255,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <span>{currentYear} © BUDDHI PRODUCT | CEYLON GOLDEN SPICES. ALL RIGHTS RESERVED.</span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-xs md:text-sm">
-              <button 
+              <button
                 onClick={() => {
                   onNavigate('privacy-policy');
                   scrollToTop();
@@ -265,7 +265,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 Privacy Policy
               </button>
               <span className="hidden sm:inline">|</span>
-              <button 
+              <button
                 onClick={() => {
                   onNavigate('terms-of-service');
                   scrollToTop();
@@ -275,7 +275,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 Terms of Service
               </button>
               <span className="hidden sm:inline">|</span>
-              <button 
+              <button
                 onClick={() => {
                   onNavigate('cookie-policy');
                   scrollToTop();

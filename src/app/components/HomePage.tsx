@@ -1,10 +1,65 @@
-import { motion } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { ChevronDown, Leaf, Award, Globe, Package, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+//Images imports
+import Image01 from "../components/assets/Home/image01.jpg";
+import Image02 from "../components/assets/Home/image02.jpg";
+import Image03 from "../components/assets/Home/image03.jpg";
+import Image04 from "../components/assets/Home/image04.jpg";
+import Image05 from "../components/assets/Home/image05.jpg";
+import Image06 from "../components/assets/Home/image06.jpg";
+import Image07 from "../components/assets/Home/image07.jpg";
+import Image08 from "../components/assets/Home/image08.jpg";
+import Image09 from "../components/assets/Home/image09.jpg";
+import Image10 from "../components/assets/Home/image10.jpg";
+
+import Video01 from "../components/assets/Home/video01.mp4";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
 }
+interface CounterProps {
+  target: number;
+  suffix?: string;
+  duration?: number; // ms
+}
+
+function AnimatedCounter({ target, suffix = '', duration = 2000 }: CounterProps) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime: number | null = null;
+    const startValue = 0;
+
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * (target - startValue) + startValue));
+      if (progress < 1) requestAnimationFrame(step);
+      else setCount(target);
+    };
+
+    requestAnimationFrame(step);
+  }, [isInView, target, duration]);
+
+  return (
+    <div ref={ref} className="text-3xl sm:text-4xl font-bold mb-2">
+      {count}{suffix}
+    </div>
+  );
+}
+const STATS = [
+  { value: 25, suffix: '+', label: 'Years Experience' },
+  { value: 50, suffix: '+', label: 'Countries Served' },
+  { value: 25, suffix: '+', label: 'Premium Products' },
+];
 
 export function HomePage({ onNavigate }: HomePageProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,54 +68,54 @@ export function HomePage({ onNavigate }: HomePageProps) {
     {
       title: 'Ceylon Golden Spices',
       count: '8 Premium Varieties',
-      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800',
+      image: { src: Image02, alt: 'Ceylon Golden Spices' },
       icons: ['Cinnamon', 'Clove', 'Pepper', 'Cardamom']
     },
     {
       title: 'Ceylon Golden Herbal',
       count: '5 Wellness Essentials',
-      image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=800',
+      image: { src: Image03, alt: 'Ceylon Golden Herbal' },
       icons: ['Moringa', 'Curry Leaves', 'Coffee']
     },
     {
       title: 'Pure Ceylon Tea',
       count: '5 Exquisite Blends',
-      image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800',
+      image: { src: Image04, alt: 'Pure Ceylon Tea' },
       icons: ['Black Tea', 'Green Tea', 'Herbal']
     },
     {
       title: 'Dehydrated Fruits',
       count: '5 Exotic Flavors + Cashews',
-      image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800',
+      image: { src: Image05, alt: 'Dehydrated Fruits' },
       icons: ['Mango', 'Pineapple', 'Papaya']
     }
   ];
 
   const carouselSlides = [
     {
-      image: 'https://images.unsplash.com/photo-1599909533730-f9f49c5eb4cf?w=1600',
+      image: { src: Image06, alt: 'Spice cultivation in traditional Ceylon gardens' },
       title: 'Cultivation',
-      description: 'Spice cultivation in traditional Ceylon gardens'
+      description: 'Spice Cultivation In Traditional Ceylon Gardens'
     },
     {
-      image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=1600',
+      image: { src: Image07, alt: 'Harvesting spices in Ceylon' },
       title: 'Harvesting',
-      description: 'Hand-picking premium quality spices'
+      description: 'Hand Picking Premium Quality Spices'
     },
     {
-      image: 'https://images.unsplash.com/photo-1596040033229-a0b3b83b6d9e?w=1600',
+      image: { src: Image08, alt: 'Traditional drying and processing of spices in Ceylon' },
       title: 'Processing',
-      description: 'Traditional drying and processing methods'
+      description: 'Traditional Drying And Processing Methods'
     },
     {
-      image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=1600',
+      image: { src: Image09, alt: 'Quality control and grading of Ceylon spices' },
       title: 'Quality Control',
-      description: 'Rigorous quality inspection and grading'
+      description: 'Rigorous Quality Inspection And Grading'
     },
     {
-      image: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=1600',
+      image: { src: Image10, alt: 'Export packaging of Ceylon spices ready for global markets' },
       title: 'Export Ready',
-      description: 'Premium packaging for global markets'
+      description: 'Premium Packaging For Global Markets'
     }
   ];
 
@@ -97,7 +152,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [currentSlide]);
@@ -106,17 +161,40 @@ export function HomePage({ onNavigate }: HomePageProps) {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+
         <div className="absolute inset-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            poster="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1920"
+          >
+            {/* Replace src with your imported video or URL */}
+            <source src={Video01} type="video/mp4" />
+
+            {/* Fallback if browser can't play video */}
+            <img
+              src="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1920"
+              alt="Spice plantation"
+              className="w-full h-full object-cover"
+            />
+          </video>
+
+          {/* Overlay — unchanged */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
+        </div>
+
+        {/* <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1920"
             alt="Spice plantation"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
-        </div>
+        </div> */}
 
-        {/* Hero Content */}
         <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -149,7 +227,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
@@ -163,11 +240,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-5 gap-8 sm:gap-10 md:gap-12 items-center">
-            {/* Image Section */}
             <div className="md:col-span-3">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[300px] sm:h-[400px] md:h-[500px]">
                 <img
-                  src="https://images.unsplash.com/photo-1596040033229-a0b3b83b6d9e?w=1200"
+                  src={Image01}
                   alt="Traditional Ceylon spice heritage"
                   className="w-full h-full object-cover"
                 />
@@ -181,7 +257,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
             </div>
 
-            {/* Text Section */}
             <div className="md:col-span-2">
               <div className="border-l-4 border-[#D4AF37] pl-4 sm:pl-6">
                 <h2 className="text-3xl sm:text-4xl mb-4 sm:mb-6 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -191,7 +266,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   For over 2,000 years, Ceylon (Sri Lanka) has been the world's most coveted source of authentic spices. Our spices carry the legacy of ancient spice traders who traversed oceans to bring the treasures of our island to the world.
                 </p>
                 <p className="text-gray-700 mb-6 sm:mb-8 leading-relaxed text-justify">
-                  Today, we continue this proud tradition, combining time-honored cultivation methods with modern quality standards to deliver premium Ceylon spices to discerning global buyers.
+                  Today, we continue this proud tradition, combining time honored cultivation methods with modern quality standards to deliver premium Ceylon spices to discerning global buyers.
                 </p>
               </div>
             </div>
@@ -206,7 +281,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
               Our Premium Collection
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700">Authentic Ceylon products for global markets</p>
+            <p className="text-lg sm:text-xl text-gray-700">Authentic Ceylon Products For Global Markets</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6">
@@ -216,17 +291,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer w-full"
                 whileHover={{ y: -8 }}
               >
-                {/* Product Image */}
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={product.image}
-                    alt={product.title}
+                    src={typeof product.image === 'string' ? product.image : String(product.image.src)}
+                    alt={typeof product.image === 'string' ? product.title : (product.image.alt || product.title)}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
 
-                {/* Content - Fixed height to align buttons */}
                 <div className="p-6 h-60 flex flex-col">
                   <h3 className="text-lg lg:text-xl mb-2 text-[#7B3F00] leading-tight whitespace-nowrap overflow-hidden text-ellipsis" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {product.title}
@@ -234,7 +307,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   <br />
                   <p className="text-[#D4AF37] font-semibold mb-3 text-sm">{product.count}</p>
 
-                  {/* Icons - compact layout in single row */}
                   <div className="flex flex-wrap gap-1 mb-auto">
                     {product.icons.map((icon, i) => (
                       <span key={i} className="text-[11.5px] bg-[#FFF8E7] text-[#7B3F00] px-1.5 py-1 rounded-full whitespace-nowrap flex items-center justify-center">
@@ -243,7 +315,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     ))}
                   </div>
 
-                  {/* Button always at bottom with no margin */}
                   <button
                     onClick={() => onNavigate('products')}
                     className="flex items-center gap-2 text-[#D4AF37] hover:text-[#C09F2F] font-semibold transition-all group-hover:translate-x-2 text-sm"
@@ -268,15 +339,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <p className="text-lg sm:text-xl text-gray-700">Experience our complete quality journey</p>
           </div>
 
-          {/* Carousel Container */}
           <div className="max-w-6xl mx-auto">
             <div className="relative">
-              {/* Main Image */}
               <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                 <motion.img
                   key={currentSlide}
-                  src={carouselSlides[currentSlide].image}
-                  alt={carouselSlides[currentSlide].title}
+                  src={typeof carouselSlides[currentSlide].image === 'string' ? carouselSlides[currentSlide].image : carouselSlides[currentSlide].image.src}
+                  alt={typeof carouselSlides[currentSlide].image === 'string' ? carouselSlides[currentSlide].title : (carouselSlides[currentSlide].image.alt || carouselSlides[currentSlide].title)}
                   className="w-full h-full object-cover"
                   initial={{ opacity: 0, scale: 1.1 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -285,7 +354,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
-                {/* Slide Content */}
                 <motion.div
                   key={`content-${currentSlide}`}
                   initial={{ opacity: 0, y: 20 }}
@@ -300,7 +368,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 </motion.div>
               </div>
 
-              {/* Navigation Buttons */}
               <button
                 onClick={prevSlide}
                 className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-[#7B3F00] p-2 sm:p-3 rounded-full shadow-lg transition-all hover:scale-110"
@@ -316,7 +383,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
-              {/* Dots Indicator */}
               <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
                 {carouselSlides.map((_, index) => (
                   <button
@@ -330,7 +396,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
             </div>
 
-            {/* Thumbnail Navigation */}
             <div className="mt-4 sm:mt-6 grid grid-cols-5 gap-2 sm:gap-4">
               {carouselSlides.map((slide, index) => (
                 <button
@@ -340,8 +405,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     }`}
                 >
                   <img
-                    src={slide.image}
-                    alt={slide.title}
+                    src={typeof slide.image === 'string' ? slide.image : String(slide.image.src)}
+                    alt={typeof slide.image === 'string' ? slide.title : (slide.image.alt || slide.title)}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/20"></div>
@@ -354,7 +419,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       {/* Why Golden Spices - USP Section */}
       <section className="py-20 bg-[#0A2647] text-white relative overflow-hidden">
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-8 gap-8 transform rotate-12">
             {[...Array(64)].map((_, i) => (
@@ -366,7 +430,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-5xl mb-4 text-[#D4AF37]" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Why Golden Spices?
+              Why Ceylon Golden Spices?
             </h2>
             <p className="text-xl text-gray-300">Your trusted partner for authentic Ceylon spices</p>
           </div>
@@ -383,12 +447,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   viewport={{ once: true }}
                   className="relative group"
                 >
-                  {/* Video Background */}
                   <div className="absolute inset-0 rounded-2xl overflow-hidden opacity-20 group-hover:opacity-30 transition-opacity">
                     <img src={usp.video} alt="" className="w-full h-full object-cover" />
                   </div>
 
-                  {/* Content */}
                   <div className="relative bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37] transition-all">
                     <div className="w-16 h-16 bg-[#D4AF37] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                       <Icon className="w-8 h-8 text-white" />
@@ -403,7 +465,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      {/* Quality Promise Banner */}
+      {/* Quality Promise Banner — Animated Counters */}
       <section className="py-10 sm:py-12 bg-gradient-to-r from-[#D4AF37] to-[#C09F2F] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -411,18 +473,22 @@ export function HomePage({ onNavigate }: HomePageProps) {
               From Sri Lanka's Ancient Spice Gardens to Your Global Markets
             </h3>
             <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12">
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold mb-2">25+</div>
-                <div className="text-xs sm:text-sm">Years Experience</div>
-              </div>
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold mb-2">50+</div>
-                <div className="text-xs sm:text-sm">Countries Served</div>
-              </div>
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold mb-2">27</div>
-                <div className="text-xs sm:text-sm">Premium Products</div>
-              </div>
+              {STATS.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <AnimatedCounter
+                    target={stat.value}
+                    suffix={stat.suffix}
+                    duration={2000}
+                  />
+                  <div className="text-xs sm:text-sm">{stat.label}</div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
