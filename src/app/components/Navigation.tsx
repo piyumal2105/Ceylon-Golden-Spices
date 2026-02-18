@@ -2,6 +2,9 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
+import Image01 from "../components/assets/Global/logo01.jpeg"
+import Image02 from "../components/assets/Global/logo02.jpeg"
+
 interface NavigationProps {
   currentPage: string;
   onNavigate: (page: string) => void;
@@ -33,8 +36,8 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             onClick={() => handleNavigate('home')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#C09F2F] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <span className="text-2xl">🌿</span>
+            <div className="w-12 h-12 rounded-full overflow-hidden shadow-lg group-hover:scale-110 transition-transform border-2 border-[#D4AF37]">
+              <img src={Image01} alt="Ceylon Golden Spices Logo" className="w-full h-full object-cover" />
             </div>
             <div>
               <h1 className="text-lg md:text-2xl font-bold text-[#7B3F00] whitespace-nowrap">Ceylon Golden Spices</h1>

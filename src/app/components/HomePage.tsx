@@ -15,6 +15,7 @@ import Image09 from "../components/assets/Home/image09.jpg";
 import Image10 from "../components/assets/Home/image10.jpg";
 
 import Video01 from "../components/assets/Home/video01.mp4";
+import Video02 from "../components/assets/Home/video02.mp4";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -185,15 +186,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
           {/* Overlay — unchanged */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
         </div>
-
-        {/* <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1920"
-            alt="Spice plantation"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
-        </div> */}
 
         <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
           <motion.div
