@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { Navigation } from './components/Navigation';
 import { HomePage } from './components/HomePage';
@@ -16,41 +16,83 @@ import { CookieBanner } from './components/CookieBanner';
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
-  // Get page metadata for SEO
+  // SEO meta per page
   const getPageMeta = () => {
-    const baseMeta = {
+    const base = {
       title: 'Ceylon Golden Spices',
       siteName: 'Ceylon Golden Spices',
       domain: 'ceylongoldenspices.com',
-      description: 'Premium Ceylon spices exporter from Sri Lanka. Authentic Ceylon cinnamon, black pepper, cloves, cardamom, and more. B2B spice supplier for international markets.',
-      keywords: 'Ceylon spices, Sri Lankan spices, Ceylon cinnamon, spice exporter, authentic spices, premium spices, B2B spices, Ceylon tea, dehydrated fruits'
+      description:
+        'Premium Ceylon spices exporter from Sri Lanka. Authentic Ceylon cinnamon, black pepper, cloves, cardamom, and more. B2B spice supplier for international markets.',
+      keywords:
+        'Ceylon spices, Sri Lankan spices, Ceylon cinnamon, spice exporter, authentic spices, premium spices, B2B spices, Ceylon tea, dehydrated fruits',
     };
 
     switch (currentPage) {
       case 'home':
-        return { ...baseMeta, title: 'Ceylon Golden Spices - Premium Sri Lankan Spice Exporter', description: 'Leading exporter of authentic Ceylon spices from Sri Lanka. Premium quality Ceylon cinnamon, black pepper, cardamom, and more. Trusted B2B spice supplier worldwide.' };
+        return {
+          ...base,
+          title: 'Ceylon Golden Spices - Premium Sri Lankan Spice Exporter',
+          description:
+            'Leading exporter of authentic Ceylon spices from Sri Lanka. Premium quality Ceylon cinnamon, black pepper, cardamom, and more. Trusted B2B spice supplier worldwide.',
+        };
       case 'about':
       case 'about-us':
-        return { ...baseMeta, title: 'About Us - Ceylon Golden Spices', description: 'Learn about Ceylon Golden Spices, Sri Lanka\'s trusted spice exporter. Our heritage, values, and commitment to authentic Ceylon spices for global markets.' };
+        return {
+          ...base,
+          title: 'About Us - Ceylon Golden Spices',
+          description:
+            "Learn about Ceylon Golden Spices, Sri Lanka's trusted spice exporter. Our heritage, values, and commitment to authentic Ceylon spices for global markets.",
+        };
       case 'products':
-        return { ...baseMeta, title: 'Our Products - Ceylon Golden Spices', description: 'Browse our premium Ceylon spices collection: Ceylon cinnamon, black pepper, cloves, cardamom, turmeric, Ceylon tea, and dehydrated fruits. Export-ready quality.' };
+        return {
+          ...base,
+          title: 'Our Products - Ceylon Golden Spices',
+          description:
+            'Browse our premium Ceylon spices collection: Ceylon cinnamon, black pepper, cloves, cardamom, turmeric, Ceylon tea, and dehydrated fruits. Export-ready quality.',
+        };
       case 'heritage':
       case 'heritage-quality':
       case 'heritage-&-quality':
-        return { ...baseMeta, title: 'Heritage & Quality - Ceylon Golden Spices', description: 'Discover the Ceylon spice legacy and why Sri Lankan spices are world-renowned. Our quality standards and traditional cultivation methods.' };
+        return {
+          ...base,
+          title: 'Heritage & Quality - Ceylon Golden Spices',
+          description:
+            'Discover the Ceylon spice legacy and why Sri Lankan spices are world-renowned. Our quality standards and traditional cultivation methods.',
+        };
       case 'contact':
       case 'contact-us':
-        return { ...baseMeta, title: 'Contact Us - Ceylon Golden Spices', description: 'Get in touch with Ceylon Golden Spices for export inquiries. Request quotes for premium Ceylon spices. B2B spice supplier contact.' };
+        return {
+          ...base,
+          title: 'Contact Us - Ceylon Golden Spices',
+          description:
+            'Get in touch with Ceylon Golden Spices for export inquiries. Request quotes for premium Ceylon spices. B2B spice supplier contact.',
+        };
       case 'privacy':
       case 'privacy-policy':
-        return { ...baseMeta, title: 'Privacy Policy - Ceylon Golden Spices', description: 'Privacy policy for Ceylon Golden Spices. How we collect, use, and protect your personal information.' };
+        return {
+          ...base,
+          title: 'Privacy Policy - Ceylon Golden Spices',
+          description:
+            'Privacy policy for Ceylon Golden Spices. How we collect, use, and protect your personal information.',
+        };
       case 'terms':
       case 'terms-of-service':
-        return { ...baseMeta, title: 'Terms and Conditions - Ceylon Golden Spices', description: 'Terms and conditions for Ceylon Golden Spices. Purchase terms, shipping, and policies.' };
+        return {
+          ...base,
+          title: 'Terms and Conditions - Ceylon Golden Spices',
+          description:
+            'Terms and conditions for Ceylon Golden Spices. Purchase terms, shipping, and policies.',
+        };
       case 'cookie-policy':
-        return { ...baseMeta, title: 'Cookie Policy - Ceylon Golden Spices', description: 'Cookie policy for Ceylon Golden Spices. Learn how we use cookies and manage your preferences.' };
+        return {
+          ...base,
+          title: 'Cookie Policy - Ceylon Golden Spices',
+          description:
+            'Cookie policy for Ceylon Golden Spices. Learn how we use cookies and manage your preferences.',
+        };
       default:
-        return baseMeta;
+        return base;
     }
   };
 
@@ -63,7 +105,7 @@ export default function App() {
         <meta name="description" content={pageMeta.description} />
         <meta name="keywords" content={pageMeta.keywords} />
 
-        {/* Open Graph / Facebook */}
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://www.${pageMeta.domain}/`} />
         <meta property="og:title" content={pageMeta.title} />
@@ -76,7 +118,7 @@ export default function App() {
         <meta property="twitter:title" content={pageMeta.title} />
         <meta property="twitter:description" content={pageMeta.description} />
 
-        {/* Additional SEO */}
+        {/* SEO */}
         <meta name="robots" content="index, follow" />
         <meta name="language" content="English" />
         <meta name="revisit-after" content="7 days" />
@@ -86,6 +128,7 @@ export default function App() {
 
       <div className="min-h-screen bg-white">
         <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+
         <main>
           {(() => {
             switch (currentPage) {
@@ -102,10 +145,16 @@ export default function App() {
                 return <HeritagePage />;
               case 'contact':
               case 'contact-us':
-                return <ContactPage onOpenChatbot={() => {
-                  const chatbotButton = document.querySelector('[data-chatbot-button]') as HTMLButtonElement;
-                  if (chatbotButton) chatbotButton.click();
-                }} />;
+                return (
+                  <ContactPage
+                    onOpenChatbot={() => {
+                      const btn = document.querySelector(
+                        '[data-chatbot-button]'
+                      ) as HTMLButtonElement;
+                      if (btn) btn.click();
+                    }}
+                  />
+                );
               case 'privacy':
               case 'privacy-policy':
                 return <PrivacyPolicyPage onNavigate={setCurrentPage} />;
@@ -119,6 +168,8 @@ export default function App() {
             }
           })()}
         </main>
+
+        {/* Footer receives dynamic year helper */}
         <Footer onNavigate={setCurrentPage} />
         <Chatbot />
         <CookieBanner onNavigate={setCurrentPage} />
