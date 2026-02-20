@@ -1,87 +1,216 @@
-import { motion } from 'motion/react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { VideoPlayer } from './VideoPlayer';
-import { Play, Award, Leaf, Globe, CheckCircle } from 'lucide-react';
+import {
+  Award, Sun, Layers, Clock, ShieldCheck,
+  ChevronLeft, ChevronRight, Leaf,
+  Wind, Star
+} from 'lucide-react';
+
+import Image01 from "../components/assets/Heritage/image00.png";
+import Image02 from "../components/assets/Heritage/image01.jpg";
+import Image03 from "../components/assets/Heritage/image02.jpg";
+import Image04 from "../components/assets/Heritage/image03.jpg";
+import Image05 from "../components/assets/Heritage/image04.jpg";
+import Image06 from "../components/assets/Heritage/image05.jpg";
+import Image07 from "../components/assets/Heritage/image06.jpg";
+
+function ImageSlider({ images, autoPlayInterval = 4000 }) {
+  const [current, setCurrent] = useState(0);
+
+  const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
+  const next = () => setCurrent((c) => (c + 1) % images.length);
+
+  // Auto-slide — resets cleanly on unmount
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % images.length);
+    }, autoPlayInterval);
+    return () => clearInterval(timer);
+  }, [images.length, autoPlayInterval]);
+
+  return (
+    <div className="relative w-full h-full overflow-hidden rounded-2xl">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={current}
+          src={images[current].src}
+          alt={images[current].alt}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.45 }}
+          className="w-full h-full object-cover"
+        />
+      </AnimatePresence>
+
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none rounded-2xl" />
+
+      {/* Caption */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm font-medium bg-black/40 backdrop-blur-sm px-4 py-1.5 rounded-full whitespace-nowrap">
+        {images[current].caption}
+      </div>
+
+      {/* Prev / Next Controls */}
+      <button
+        onClick={prev}
+        aria-label="Previous image"
+        className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white rounded-full p-2 transition-all"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      <button
+        onClick={next}
+        aria-label="Next image"
+        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white rounded-full p-2 transition-all"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+
+      {/* Pill-style dot indicators */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`transition-all duration-300 rounded-full h-2 ${i === current
+              ? 'w-6 bg-[#D4AF37]'
+              : 'w-2 bg-white/60 hover:bg-white/90'
+              }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function HeritagePage() {
-  const timelineEras = [
-    { era: 'Ancient Era', period: 'Before 500 AD', thumb: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=400', duration: '2:30' },
-    { era: 'Colonial Era', period: '1500-1948', thumb: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=400', duration: '3:15' },
-    { era: 'Independence Era', period: '1948-2000', thumb: 'https://images.unsplash.com/photo-1682482002999-654860dfcb24?w=400', duration: '2:45' },
-    { era: 'Modern Era', period: '2000-Present', thumb: 'https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=400', duration: '3:00' }
-  ];
 
   const geographicAdvantages = [
-    { title: 'Perfect Climate', description: 'Tropical monsoon patterns ideal for spice cultivation', icon: '☀️', video: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=600' },
-    { title: 'Rich Volcanic Soil', description: 'Nutrient-dense soil from ancient geological activity', icon: '🌋', video: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=600' },
-    { title: 'Traditional Methods', description: '2,000 years of refined cultivation expertise', icon: '👨‍🌾', video: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=600' },
-    { title: 'Biodiversity', description: 'Unique ecosystem supporting premium spice varieties', icon: '🌿', video: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=600' }
+    {
+      title: 'Perfect Climate',
+      description: 'Tropical monsoon patterns create the ideal humidity and temperature cycles for premium spice cultivation year-round.',
+      icon: Sun,
+      bgImage: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=600'
+    },
+    {
+      title: 'Rich Volcanic Soil',
+      description: 'Mineral-dense soil from ancient geological activity delivers unmatched flavour depth and essential oil concentration.',
+      icon: Layers,
+      bgImage: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=600'
+    },
+    {
+      title: 'Ancient Cultivation Heritage',
+      description: 'Over 2,000 years of continuously refined growing and harvesting expertise passed through generations of master cultivators.',
+      icon: Clock,
+      bgImage: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=600'
+    },
+    {
+      title: 'Certified Biodiversity',
+      description: 'A unique highland ecosystem nurtures rare spice varieties with superior aromatic profiles not replicable elsewhere.',
+      icon: ShieldCheck,
+      bgImage: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=600'
+    }
   ];
 
-  const processStages = [
-    { stage: 'Sourcing', description: 'Direct partnerships with certified estates and farmers', thumb: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=400', duration: '1:30' },
-    { stage: 'Harvesting', description: 'Traditional hand-picking methods for premium quality', thumb: 'https://images.unsplash.com/photo-1640220023829-ee908684d565?w=400', duration: '2:15' },
-    { stage: 'Processing', description: 'State-of-the-art facilities maintaining purity', thumb: 'https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=400', duration: '3:00' },
-    { stage: 'Quality Control', description: 'Rigorous testing at multiple checkpoints', thumb: 'https://images.unsplash.com/photo-1666039438492-02a95ecd70c3?w=400', duration: '2:45' },
-    { stage: 'Packaging', description: 'Export-grade materials preserving freshness', thumb: 'https://images.unsplash.com/photo-1739204618173-3e89def7140f?w=400', duration: '2:00' },
-    { stage: 'Documentation', description: 'Complete traceability from farm to container', thumb: 'https://images.unsplash.com/photo-1739204618173-3e89def7140f?w=400', duration: '1:45' }
-  ];
-
-  const qualityVideos = [
-    { title: 'Hygiene Protocols', duration: '2:30', thumb: 'https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=400' },
-    { title: 'Processing Standards', duration: '3:15', thumb: 'https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?w=400' },
-    { title: 'Storage Conditions', duration: '2:00', thumb: 'https://images.unsplash.com/photo-1739204618173-3e89def7140f?w=400' },
-    { title: 'Packaging Materials', duration: '1:45', thumb: 'https://images.unsplash.com/photo-1739204618173-3e89def7140f?w=400' },
-    { title: 'Export Compliance', duration: '2:45', thumb: 'https://images.unsplash.com/photo-1739204618173-3e89def7140f?w=400' },
-    { title: 'Team Training', duration: '3:00', thumb: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=400' }
+  const ceylonSliderImages = [
+    {
+      src: Image02,
+      alt: 'Ceylon cinnamon quills',
+      caption: 'Hand Rolled Ceylon Cinnamon Quills'
+    },
+    {
+      src: Image03,
+      alt: 'Spice harvesting',
+      caption: 'Traditional Harvest Methods'
+    },
+    {
+      src: Image04,
+      alt: 'Tea plantation',
+      caption: 'Sri Lankan Tea Plantations'
+    },
+    {
+      src: Image05,
+      alt: 'Spice processing',
+      caption: 'Meticulous Quality Processing'
+    },
+    {
+      src: Image06,
+      alt: 'Ceylon spice quality',
+      caption: 'Export Grade Premium Quality'
+    }
   ];
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero with Cinematic Video */}
+    <div className="min-h-screen pt-20" style={{ fontFamily: "'Georgia', serif" }}>
+
+      {/*  Hero  */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1640220023829-ee908684d565?w=1920"
-            alt="Spice heritage"
-            className="w-full h-full object-cover"
+          <img
+            src={Image01}
+            alt="Ancient Ceylon spice heritage — Sigiriya rock fortress with traditional spice market in the foreground"
+            className="w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+          {/* Light at top so Sigiriya stays visible, darker at bottom for text readability */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.45) 65%, rgba(0,0,0,0.72) 100%)'
+            }}
+          />
         </div>
 
-        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
+        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto py-32 mt-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <h1 className="text-7xl mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
-              2,000 Years of Ceylon Spice Excellence
+            <p className="text-[#D4AF37] text-sm uppercase tracking-[0.3em] mb-4 font-sans">
+              Ceylon Golden Spices
+            </p>
+            <h1
+              className="text-6xl md:text-7xl mb-6 leading-tight drop-shadow-2xl"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              2,000 Years of Ceylon<br />Spice Excellence
             </h1>
-            <p className="text-2xl mb-8 text-[#D4AF37]">
+            <p className="text-xl md:text-2xl mb-10 text-[#D4AF37] font-sans font-light drop-shadow-lg">
               Discover Why Ceylon Spices Are the World's Finest
             </p>
-            <button className="flex items-center gap-3 mx-auto bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-2xl">
-              <Play className="w-6 h-6" fill="white" />
-              Watch Our Heritage Story
-            </button>
+            <a
+              href="#heritage-story"
+              className="inline-block bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-2xl font-sans"
+            >
+              Explore Our Heritage
+            </a>
           </motion.div>
         </div>
       </section>
-
-      {/* Heritage Documentary */}
-      <section className="py-20 bg-white">
+      <section id="heritage-story" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
-              The Ceylon Spice Legacy: A Journey Through Time
+            <p className="text-[#D4AF37] text-sm uppercase tracking-[0.3em] mb-3 font-sans">Our Story</p>
+            <h2
+              className="text-5xl mb-4 text-[#7B3F00]"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              The Ceylon Spice Legacy:<br />A Journey Through Time
             </h2>
-            <p className="text-xl text-gray-700">12-minute documentary</p>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto text-justify font-sans">
+              From ancient trade routes to modern global markets, the story of Ceylon spices is one
+              of extraordinary quality, cultural richness, and enduring excellence.
+            </p>
           </div>
 
-          <VideoPlayer 
+          <VideoPlayer
             thumbnail="https://images.unsplash.com/photo-1649853761620-c6588c980545?w=1600"
-            title="Complete Ceylon Spice Heritage Documentary"
-            duration="12:45"
-            className="h-[700px]"
+            title="Complete Ceylon Spice Heritage Documentary — Ceylon Golden Spices"
+            className="h-[600px] md:h-[700px]"
           />
 
           {/* Chapter Markers */}
@@ -89,305 +218,264 @@ export function HeritagePage() {
             {[
               { chapter: 'Ancient Origins', time: '0:00' },
               { chapter: 'The Spice Route Era', time: '2:30' },
-              { chapter: 'Ceylon\'s Geographic Gift', time: '5:00' },
+              { chapter: "Ceylon's Geographic Gift", time: '5:00' },
               { chapter: 'Traditional Wisdom', time: '7:00' },
               { chapter: 'Modern Excellence', time: '9:30' }
             ].map((chapter, index) => (
               <button
                 key={index}
+                aria-label={`Jump to chapter: ${chapter.chapter} at ${chapter.time}`}
                 className="bg-[#FFF8E7] hover:bg-[#D4AF37] hover:text-white p-3 rounded-lg transition-all text-center group"
               >
-                <div className="text-sm font-semibold text-[#D4AF37] group-hover:text-white mb-1">{chapter.time}</div>
-                <div className="text-xs text-[#7B3F00] group-hover:text-white">{chapter.chapter}</div>
+                <div className="text-sm font-semibold text-[#D4AF37] group-hover:text-white mb-1 font-sans">
+                  {chapter.time}
+                </div>
+                <div className="text-xs text-[#7B3F00] group-hover:text-white font-sans">
+                  {chapter.chapter}
+                </div>
               </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Interactive Timeline */}
+      {/*  Why Sri Lanka Produces Superior Spices  */}
       <section className="py-20 bg-[#FFF8E7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Ceylon Spice History Timeline
-            </h2>
-            <p className="text-xl text-gray-700">Click each era to explore its story</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {timelineEras.map((era, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-              >
-                <div className="relative">
-                  <VideoPlayer 
-                    thumbnail={era.thumb}
-                    title={era.era}
-                    duration={era.duration}
-                    className="h-64"
-                  />
-                </div>
-                <div className="mt-4 text-center">
-                  <h3 className="text-xl font-bold text-[#7B3F00] group-hover:text-[#D4AF37] transition-colors mb-1">
-                    {era.era}
-                  </h3>
-                  <p className="text-sm text-gray-600">{era.period}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Geographic Advantage */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <p className="text-[#D4AF37] text-sm uppercase tracking-[0.3em] mb-3 font-sans">
+              Geographic Advantage
+            </p>
+            <h2
+              className="text-5xl mb-4 text-[#7B3F00]"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               Why Sri Lanka Produces Superior Spices
             </h2>
-            <p className="text-xl text-gray-700">Nature's perfect recipe for excellence</p>
+            <p className="text-xl text-gray-700 font-sans">Nature's perfect recipe for excellence</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Map Video */}
-            <div>
-              <VideoPlayer 
-                thumbnail="https://images.unsplash.com/photo-1649853761620-c6588c980545?w=800"
-                title="Ceylon's Geographic Advantages - Animated Map"
-                duration="4:30"
-                className="h-[500px]"
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Static landscape image */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative rounded-2xl overflow-hidden shadow-2xl"
+            >
+              <img
+                src={Image07}
+                alt="Sri Lanka's lush highland spice growing regions — unique climate and terrain"
+                className="w-full h-[500px] object-cover"
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#7B3F00]/20 to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <p className="text-sm uppercase tracking-widest text-[#D4AF37] font-sans mb-1">
+                  Growing Region
+                </p>
+                <p className="text-2xl font-bold" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  Highland Sri Lanka
+                </p>
+              </div>
+            </motion.div>
 
-            {/* Benefits */}
+            {/* Advantage Cards */}
             <div className="space-y-4">
-              {geographicAdvantages.map((advantage, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative bg-[#FFF8E7] p-6 rounded-xl hover:shadow-lg transition-all group overflow-hidden"
-                >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity">
-                    <img src={advantage.video} alt="" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="relative z-10 flex items-start gap-4">
-                    <div className="text-4xl">{advantage.icon}</div>
-                    <div>
-                      <h4 className="text-xl font-bold text-[#7B3F00] mb-2">{advantage.title}</h4>
-                      <p className="text-gray-700">{advantage.description}</p>
+              {geographicAdvantages.map((advantage, index) => {
+                const Icon = advantage.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="relative bg-white p-6 rounded-xl hover:shadow-xl transition-all group overflow-hidden border border-[#E8D5B0]/60"
+                  >
+                    {/* Subtle hover background image */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500">
+                      <img
+                        src={advantage.bgImage}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+
+                    <div className="relative z-10 flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#FFF8E7] rounded-xl flex items-center justify-center border border-[#D4AF37]/30 group-hover:bg-[#D4AF37] transition-colors duration-300">
+                        <Icon className="w-6 h-6 text-[#D4AF37] group-hover:text-white transition-colors duration-300" />
+                      </div>
+                      <div>
+                        <h4
+                          className="text-xl font-bold text-[#7B3F00] mb-2"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          {advantage.title}
+                        </h4>
+                        <p className="text-gray-600 text-justify font-sans leading-relaxed">
+                          {advantage.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Ceylon vs Others Comparison */}
+      {/*  The Ceylon Difference  */}
       <section className="py-20 bg-[#0A2647] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-5xl mb-4 text-[#D4AF37]" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <p className="text-[#D4AF37]/80 text-sm uppercase tracking-[0.3em] mb-3 font-sans">
+              Quality Comparison
+            </p>
+            <h2
+              className="text-5xl mb-4 text-[#D4AF37]"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               The Ceylon Difference
             </h2>
-            <p className="text-xl text-gray-300">Side-by-side comparison reveals the quality gap</p>
+            <p className="text-xl text-gray-300 font-sans">
+              Visual evidence of a quality standard unmatched anywhere in the world
+            </p>
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              <div>
-                <h3 className="text-xl font-bold text-[#D4AF37] mb-4 text-center">Ceylon Cinnamon</h3>
-                <VideoPlayer 
-                  thumbnail="https://images.unsplash.com/photo-1682482002999-654860dfcb24?w=800"
-                  title="Authentic Ceylon Cinnamon Process"
-                  duration="3:20"
-                  className="h-80"
-                />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-400 mb-4 text-center">Cassia (Comparison)</h3>
-                <VideoPlayer 
-                  thumbnail="https://images.unsplash.com/photo-1631021967400-fbd3f722101c?w=800"
-                  title="Standard Cassia Processing"
-                  duration="3:20"
-                  className="h-80"
-                />
-              </div>
-            </div>
+            {/* Auto-Sliding Image Slider — 4 second interval */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="h-80 md:h-[460px] mb-12"
+            >
+              <ImageSlider images={ceylonSliderImages} autoPlayInterval={4000} />
+            </motion.div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl">
-              <h4 className="text-2xl font-bold text-[#D4AF37] mb-6 text-center">Key Differences</h4>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl mb-2">👃</div>
-                  <h5 className="font-bold mb-2">Aroma</h5>
-                  <p className="text-sm text-gray-300">Delicate, sweet fragrance vs. strong, sharp scent</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl mb-2">🎯</div>
-                  <h5 className="font-bold mb-2">Quality</h5>
-                  <p className="text-sm text-gray-300">Multiple thin layers vs. thick single bark</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl mb-2">💊</div>
-                  <h5 className="font-bold mb-2">Health</h5>
-                  <p className="text-sm text-gray-300">Low coumarin (safe) vs. high coumarin content</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quality Journey */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
-              From Garden to Global Standards
-            </h2>
-            <p className="text-xl text-gray-700">Interactive process flow - Click each stage</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {processStages.map((stage, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
+            {/* Key Differences */}
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/10">
+              <h4
+                className="text-2xl font-bold text-[#D4AF37] mb-8 text-center"
+                style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                <VideoPlayer 
-                  thumbnail={stage.thumb}
-                  title={stage.stage}
-                  duration={stage.duration}
-                  className="h-56"
-                />
-                <div className="mt-4">
-                  <h4 className="text-lg font-bold text-[#7B3F00] group-hover:text-[#D4AF37] transition-colors mb-2">
-                    {index + 1}. {stage.stage}
-                  </h4>
-                  <p className="text-sm text-gray-600">{stage.description}</p>
+                Key Differences
+              </h4>
+              <div className="grid md:grid-cols-3 gap-6">
+
+                {/* Aroma */}
+                <div className="text-center group">
+                  <div className="w-14 h-14 bg-[#D4AF37]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D4AF37]/40 transition-colors">
+                    <Wind className="w-7 h-7 text-[#D4AF37]" />
+                  </div>
+                  <h5 className="font-bold mb-2 text-lg font-sans">Aroma</h5>
+                  <p className="text-sm text-gray-300 text-justify font-sans leading-relaxed">
+                    Ceylon spices carry a delicate, naturally sweet fragrance — a hallmark of the island's
+                    unique terroir — versus the sharp, overpowering scent of commodity alternatives.
+                  </p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
 
-          <div className="text-center mt-12">
-            <button className="bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-8 py-4 rounded-full font-semibold transition-all hover:scale-105 shadow-xl">
-              Watch Complete Process (All Stages)
-            </button>
-          </div>
-        </div>
-      </section>
+                {/* Quality */}
+                <div className="text-center group">
+                  <div className="w-14 h-14 bg-[#D4AF37]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D4AF37]/40 transition-colors">
+                    <Star className="w-7 h-7 text-[#D4AF37]" />
+                  </div>
+                  <h5 className="font-bold mb-2 text-lg font-sans">Quality</h5>
+                  <p className="text-sm text-gray-300 text-justify font-sans leading-relaxed">
+                    Multiple paper-thin inner bark layers hand-rolled into delicate quills — a structural
+                    distinction that signals authentic Ceylon origin and superior grade.
+                  </p>
+                </div>
 
-      {/* Quality Standards Behind-the-Scenes */}
-      <section className="py-20 bg-[#FFF8E7]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Inside Our Quality Commitment
-            </h2>
-            <p className="text-xl text-gray-700">Behind-the-scenes video gallery</p>
-          </div>
+                {/* Health */}
+                <div className="text-center group">
+                  <div className="w-14 h-14 bg-[#D4AF37]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D4AF37]/40 transition-colors">
+                    <ShieldCheck className="w-7 h-7 text-[#D4AF37]" />
+                  </div>
+                  <h5 className="font-bold mb-2 text-lg font-sans">Health</h5>
+                  <p className="text-sm text-gray-300 text-justify font-sans leading-relaxed">
+                    Ceylon cinnamon contains naturally low coumarin levels, making it safe for regular
+                    daily consumption — unlike cassia varieties with significantly higher concentrations.
+                  </p>
+                </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {qualityVideos.map((video, index) => (
-              <div key={index} className="group cursor-pointer">
-                <VideoPlayer 
-                  thumbnail={video.thumb}
-                  title={video.title}
-                  duration={video.duration}
-                  className="h-56"
-                />
-                <h4 className="mt-3 text-lg font-semibold text-[#7B3F00] group-hover:text-[#D4AF37] transition-colors">
-                  {video.title}
-                </h4>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Certifications Roadmap */}
+      {/* ── Certifications Roadmap ───────────────────────────────────────────── */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-5xl mb-4 text-[#7B3F00]" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <p className="text-[#D4AF37] text-sm uppercase tracking-[0.3em] mb-3 font-sans">Standards</p>
+            <h2
+              className="text-5xl mb-4 text-[#7B3F00]"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               Our Commitment to Excellence
             </h2>
-            <p className="text-xl text-gray-700">Building Trust Through International Standards</p>
+            <p className="text-xl text-gray-700 font-sans">
+              Building Trust Through International Standards
+            </p>
           </div>
 
           <div className="space-y-6">
             {[
-              { name: 'ISO 22000', status: 'In Progress', progress: 75, target: '2025 Q2' },
-              { name: 'HACCP', status: 'Preparing', progress: 45, target: '2026' },
-              { name: 'Organic Certification', status: 'Evaluation', progress: 30, target: 'Future' },
-              { name: 'Fair Trade', status: 'Goal', progress: 15, target: 'Future' }
-            ].map((cert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-[#FFF8E7] p-6 rounded-xl"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <Award className="w-6 h-6 text-[#D4AF37]" />
-                    <h4 className="text-xl font-bold text-[#7B3F00]">{cert.name}</h4>
+              { name: 'ISO 22000', status: 'In Progress', progress: 75, target: '2025 Q2', icon: ShieldCheck },
+              { name: 'HACCP', status: 'Preparing', progress: 45, target: '2026', icon: Award },
+              { name: 'Organic Certification', status: 'Evaluation', progress: 30, target: 'Future', icon: Leaf },
+              { name: 'Fair Trade', status: 'Goal', progress: 15, target: 'Future', icon: Star }
+            ].map((cert, index) => {
+              const Icon = cert.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="bg-[#FFF8E7] p-6 rounded-xl border border-[#E8D5B0]/60"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-[#D4AF37]/30">
+                        <Icon className="w-5 h-5 text-[#D4AF37]" />
+                      </div>
+                      <h4
+                        className="text-xl font-bold text-[#7B3F00]"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        {cert.name}
+                      </h4>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm font-semibold text-[#D4AF37] font-sans">{cert.status}</div>
+                      <div className="text-xs text-gray-600 font-sans">Target: {cert.target}</div>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-sm font-semibold text-[#D4AF37]">{cert.status}</div>
-                    <div className="text-xs text-gray-600">Target: {cert.target}</div>
+                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${cert.progress}%` }}
+                      transition={{ duration: 1.2, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="h-full bg-gradient-to-r from-[#D4AF37] to-[#C09F2F] rounded-full"
+                    />
                   </div>
-                </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${cert.progress}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="h-full bg-[#D4AF37]"
-                  />
-                </div>
-                <div className="text-xs text-gray-600 mt-1">{cert.progress}% Complete</div>
-              </motion.div>
-            ))}
+                  <div className="text-xs text-gray-600 mt-1 font-sans">{cert.progress}% Complete</div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Virtual 360 Tour CTA */}
-      <section className="py-20 bg-gradient-to-r from-[#D4AF37] to-[#C09F2F] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Globe className="w-16 h-16 mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
-            Experience Our Facilities in 360°
-          </h2>
-          <p className="text-xl mb-8">
-            Take an immersive virtual tour of our production facilities
-          </p>
-          <button className="bg-white text-[#7B3F00] hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-xl">
-            Start Virtual Tour
-          </button>
-        </div>
-      </section>
     </div>
   );
 }
