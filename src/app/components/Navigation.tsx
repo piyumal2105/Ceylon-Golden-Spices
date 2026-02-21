@@ -30,14 +30,19 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-25">
+
+          {/* ── Logo ── */}
           <div
             onClick={() => handleNavigate('home')}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-5 cursor-pointer group"
           >
-            <div className="w-12 h-12 rounded-full overflow-hidden shadow-lg group-hover:scale-110 transition-transform border-2 border-[#D4AF37]">
-              <img src={Image01} alt="Ceylon Golden Spices Logo" className="w-full h-full object-cover" />
+            <div className="w-20 h-20 rounded-full overflow-hidden shadow-lg group-hover:scale-110 transition-transform border-2 border-[#D4AF37] bg-white flex items-center justify-center flex-shrink-0">
+              <img
+                src={Image01}
+                alt="Ceylon Golden Spices Logo"
+                className="w-full h-full object-contain p-1"
+              />
             </div>
             <div>
               <h1 className="text-lg md:text-2xl font-bold text-[#7B3F00] whitespace-nowrap">Ceylon Golden Spices</h1>
@@ -45,7 +50,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* ── Desktop Navigation ── */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <button
@@ -73,7 +78,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* ── Mobile Menu Button ── */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-[#7B3F00] hover:bg-[#FFF8E7] rounded-lg transition-colors"
@@ -83,7 +88,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile Menu ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
