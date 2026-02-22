@@ -836,6 +836,7 @@ export function ProductsPage() {
   return (
     <div className="min-h-screen bg-[#FFF8E7] pt-24 pb-16">
       {/* Header */}
+      <br />
       <div className="bg-white shadow-md mb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-3 text-[#7B3F00]" style={{ fontFamily: 'Georgia, serif' }}>
