@@ -4,7 +4,7 @@ import {
   Leaf, Coffee, Apple, ChevronRight, FileText, Globe, Phone,
   Circle, Droplets, Wind, Zap, Flame, Star, Flower, Layers,
   TreePine, Sprout, Bean, Grape, Banana, Citrus,
-  Box, BadgeCheck,
+  Box, BadgeCheck, MapPin, Instagram, Facebook,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -33,6 +33,17 @@ interface ProductItem {
 
 const BRAND = 'Ceylon Golden Spices';
 const DOMAIN = 'ceylongoldenspices.com';
+
+// ── Updated Contact Details ──
+const CONTACT = {
+  email: 'info@ceylongoldenspices.com',
+  hotline: '+94 71 565 5855',
+  whatsapp: '+94 71 565 5855',
+  address: '392/A, Jayamawatha, Andiambelame, Sri Lanka. Po.C. 11558',
+  facebook: 'https://www.facebook.com/profile.php?id=100090809895923',
+  instagram: 'https://www.instagram.com/buddhiproduct/',
+  pinterest: 'https://www.pinterest.com/Wddb1234/',
+};
 
 const PRODUCTS: Record<string, ProductItem[]> = {
   spices: [
@@ -212,7 +223,7 @@ export function Chatbot() {
       case 'sales':
         botResponse = {
           type: 'bot',
-          content: `Contact Our Sales Team\n\nEmail:\nsales@imperialspices.lk\n\nTelephone:\n+94 11 290 4000\n\nMobile / WhatsApp:\n+94 71 489 3350\n\nWebsite:\n${DOMAIN}\n\nWe respond within 24 hours.`,
+          content: `Contact Our Team\n\n📧 Email:\n${CONTACT.email}\n\n📞 Hotline / WhatsApp:\n${CONTACT.hotline}\n\n📍 Address:\n${CONTACT.address}\n\n🌐 Website:\n${DOMAIN}\n\n📱 Follow Us:\nFacebook · Instagram · Pinterest\n\nWe respond within 24 hours.`,
           options: [
             { icon: FileText, label: 'Fill Inquiry Form', action: 'inquiry', color: '#B8860B' },
             { icon: Package, label: 'See Our Products', action: 'products', color: '#2E7D32' },
@@ -224,7 +235,7 @@ export function Chatbot() {
       case 'quote':
         botResponse = {
           type: 'bot',
-          content: 'Request a Quote\n\nContact our sales team:\n\nEmail: sales@imperialspices.lk\nMobile: +94 71 489 3350\n\nPlease include:\n· Product(s) required\n· Quantity needed\n· Destination country\n· Preferred packaging size\n\nWe respond within 24 hours.',
+          content: `Request a Quote\n\nContact our team:\n\n📧 ${CONTACT.email}\n📞 ${CONTACT.hotline}\n\nPlease include:\n· Product(s) required\n· Quantity needed\n· Destination country\n· Preferred packaging size\n\nWe respond within 24 hours.`,
           options: [
             { icon: Users, label: 'Contact Sales Team', action: 'sales', color: '#B8860B' },
             { icon: Package, label: 'Browse Products', action: 'products', color: '#2E7D32' },
@@ -236,7 +247,7 @@ export function Chatbot() {
       case 'inquiry':
         botResponse = {
           type: 'bot',
-          content: `Inquiry Form\n\nVisit our website:\n${DOMAIN}/contact\n\nOr reach us directly:\nEmail: sales@imperialspices.lk\nMobile: +94 71 489 3350\n\nWe look forward to hearing from you.`,
+          content: `Inquiry Form\n\nVisit our website:\n${DOMAIN}/contact\n\nOr reach us directly:\n📧 ${CONTACT.email}\n📞 ${CONTACT.hotline}\n\n📍 ${CONTACT.address}\n\nWe look forward to hearing from you.`,
           options: [{ icon: Home, label: 'Back to Main Menu', action: 'main', color: '#546E7A' }],
         };
         break;
@@ -274,13 +285,16 @@ export function Chatbot() {
     } else if (text.match(/export|shipping|freight|ship/)) {
       botResponse = { type: 'bot', content: 'Export Info\n\nMin. Order: 50kg · Lead Time: 2–3 weeks\nWorldwide air & sea freight\nFull documentation provided\nPayment: LC / TT', options: [{ icon: Ship, label: 'Full Export Details', action: 'export', color: '#4527A0' }, { icon: Home, label: 'Back to Main Menu', action: 'main', color: '#546E7A' }] };
     } else if (text.match(/price|cost|quote|rate/)) {
-      botResponse = { type: 'bot', content: 'For pricing and quotes:\n\nEmail: sales@imperialspices.lk\nMobile: +94 71 489 3350\n\nInclude product, quantity, and destination for a personalised quote.', options: [{ icon: Users, label: 'Contact Sales', action: 'sales', color: '#B8860B' }, { icon: Home, label: 'Back to Main Menu', action: 'main', color: '#546E7A' }] };
+      botResponse = { type: 'bot', content: `For pricing and quotes:\n\n📧 ${CONTACT.email}\n📞 ${CONTACT.hotline}\n\nInclude product, quantity, and destination for a personalised quote.`, options: [{ icon: Users, label: 'Contact Sales', action: 'sales', color: '#B8860B' }, { icon: Home, label: 'Back to Main Menu', action: 'main', color: '#546E7A' }] };
     } else if (text.match(/size|pack|weight|gram/)) {
       botResponse = { type: 'bot', content: 'Packaging Sizes\n\nSpices / Herbal / Fruits / Cashew:\n25g · 50g · 75g · 100g\n\nTeas:\n2g × 10 bags · 2g × 20 bags\n\nCustom branding available on request.', options: [{ icon: Box, label: 'Full Packaging Details', action: 'packaging', color: '#1565C0' }, { icon: Home, label: 'Back to Main Menu', action: 'main', color: '#546E7A' }] };
+    } else if (text.match(/email|contact|phone|whatsapp|address|social|facebook|instagram|pinterest/)) {
+      botResponse = { type: 'bot', content: `Contact Details\n\n📧 ${CONTACT.email}\n📞 ${CONTACT.hotline}\n\n📍 ${CONTACT.address}\n\n🌐 ${DOMAIN}\n\n📱 Social Media:\nFacebook · Instagram · Pinterest`, options: [{ icon: Users, label: 'More Contact Options', action: 'sales', color: '#B8860B' }, { icon: Home, label: 'Back to Main Menu', action: 'main', color: '#546E7A' }] };
     } else {
       botResponse = { type: 'bot', content: 'Thank you for your message. Our team will follow up shortly.\n\nMeanwhile, feel free to explore our products or contact sales.', options: [{ icon: Package, label: 'Explore Products', action: 'products', color: '#2E7D32' }, { icon: Users, label: 'Contact Sales', action: 'sales', color: '#B8860B' }, { icon: Home, label: 'Main Menu', action: 'main', color: '#546E7A' }] };
     }
 
+    const quoteOptionLocal: ChatOption = { icon: FileText, label: 'Request Quote', action: 'quote', color: '#B8860B' };
     const userMsg: Message = { type: 'user', content: originalInput };
     setMessages(prev => [...prev, userMsg, botResponse]);
   };
@@ -339,7 +353,6 @@ export function Chatbot() {
                     className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-md"
                     style={{ background: 'linear-gradient(135deg, #D4AF37, #A67C00)' }}
                   >
-                    {/* <Leaf className="w-5 h-5 text-white" /> */}
                     <img src={Image01} alt="Logo" className="w-5 h-5 object-contain" />
                   </div>
                   <div>
@@ -366,7 +379,7 @@ export function Chatbot() {
                 </div>
               </div>
 
-              {/* Quick action buttons — 4-column grid, no scroll */}
+              {/* Quick action buttons */}
               {!isMinimized && (
                 <div className="px-3 pb-3 grid grid-cols-4 gap-1.5">
                   {[

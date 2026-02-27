@@ -11,7 +11,6 @@ const PRODUCTS = [
     fullDescription: 'Our Pure Ceylon Whole Cloves are meticulously hand-harvested from Syzygium aromaticum trees thriving in the fertile, humid lowlands and mid-elevations of Sri Lanka. Each clove is carefully selected at peak maturity — when the bud transitions from green to a vivid rose-pink — ensuring maximum essential oil content and the strongest, most complex aroma profile. Ceylon cloves are globally prized for their exceptionally high eugenol concentration (up to 90%), which imparts their signature warm, woody, and slightly sweet flavour. Unlike mass-market alternatives, our cloves are sun-dried using traditional slow-drying methods to preserve volatile compounds and prevent mould without chemical intervention.',
     image: 'https://images.unsplash.com/photo-1623307645573-7f856d37f470?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Matara & Galle Districts',
     nutrition: 'Rich in Manganese, Vitamin K, and antioxidants.',
@@ -31,7 +30,6 @@ const PRODUCTS = [
     fullDescription: 'Ceylon Cinnamon — Cinnamomum verum — is the only true cinnamon in the world, and Sri Lanka produces over 80% of the global supply. Our quills are hand-crafted by skilled cinnamon peelers (known as "chalias") who have inherited the art over centuries. The inner bark is carefully peeled, layered, and hand-rolled into signature multi-layered quills with a papery-thin texture unique to genuine Ceylon cinnamon. What sets Ceylon apart from the widely sold Cassia cinnamon is its dramatically lower coumarin content (0.04% vs. up to 1% in Cassia), making it far safer for daily consumption.',
     image: 'https://images.unsplash.com/photo-1682482002999-654860dfcb24?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Bestseller',
     origin: 'Sri Lanka',
     region: 'Matara & Galle Districts',
     nutrition: 'Contains cinnamaldehyde, linalool; antioxidant-rich.',
@@ -51,7 +49,6 @@ const PRODUCTS = [
     fullDescription: 'Ceylon white peppercorns are produced from fully ripened Piper nigrum berries that have had their outer skin (pericarp) carefully removed through a traditional water-retting process. This soaking and hand-peeling method reveals the inner seed, resulting in a smooth, creamy-white peppercorn with a flavour profile distinctly different from black pepper. White pepper carries a hotter, more focused heat with earthy, fermented, and slightly floral notes — prized in fine European, Chinese, and Southeast Asian cuisines.',
     image: 'https://images.unsplash.com/photo-1649951806971-ad0e00408773?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Kandy & Kegalle Districts',
     nutrition: 'Source of piperine, Vitamin C, and dietary fibre.',
@@ -71,7 +68,6 @@ const PRODUCTS = [
     fullDescription: 'Known as the "King of Spices," our Pure Ceylon Whole Black Pepper represents the finest expression of Piper nigrum from the verdant, high-humidity regions of Sri Lanka\'s hill country and southern province. The peppercorns are harvested just before full ripeness — when the berries are green-to-yellow — then sun-dried or hot-air dried until the outer skin wrinkles and turns to the characteristic deep black. Ceylon black pepper is particularly valued for its high piperine content, which significantly enhances the bioavailability of nutrients.',
     image: 'https://images.unsplash.com/photo-1649951806971-ad0e00408773?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Southern Province & Kandy',
     nutrition: 'High in piperine; anti-inflammatory properties.',
@@ -91,7 +87,6 @@ const PRODUCTS = [
     fullDescription: 'Our Pure Ceylon Turmeric Powder is produced from Curcuma longa rhizomes cultivated in the rich, red laterite soils of Sri Lanka\'s dry and intermediate zones. Ceylon turmeric is celebrated globally for its exceptionally high curcumin content — typically ranging from 3.5% to 7%, significantly above industry averages — resulting in a deeper golden colour, more pronounced flavour, and superior therapeutic potency. The harvested rhizomes are carefully washed, boiled, slow-dried, and then stone-ground using low-heat millstones that preserve heat-sensitive volatile oils and bioactive compounds.',
     image: 'https://images.unsplash.com/photo-1631021967400-fbd3f722101c?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Organic',
     origin: 'Sri Lanka',
     region: 'Matale & Kurunegala Districts',
     nutrition: 'High curcumin content; anti-inflammatory, antioxidant.',
@@ -111,7 +106,6 @@ const PRODUCTS = [
     fullDescription: 'Our Pure Ceylon Black Pepper Powder is freshly milled in small batches from the same premium whole Ceylon peppercorns we source from the hill country and southern province. Unlike commercial pepper powders that are often milled from aged, low-grade peppercorns months or years before packaging, our powder is milled close to the dispatch date from whole peppercorns stored under optimal controlled conditions.',
     image: 'https://images.unsplash.com/photo-1649951806971-ad0e00408773?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Southern Province & Kandy',
     nutrition: 'Source of piperine and essential oils.',
@@ -131,7 +125,6 @@ const PRODUCTS = [
     fullDescription: 'Goraka — the local name for Garcinia cambogia — is one of the most distinctive and culturally significant ingredients in Sri Lankan cuisine. Grown wild and cultivated across the wet zone of Sri Lanka, the fruit is harvested, split, seeded, and traditionally smoke-dried or sun-dried over multiple days until the flesh transforms into hard, dark segments with an intensely concentrated sour flavour.',
     image: 'https://images.unsplash.com/photo-1640017679257-187c9303c7c2?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Ratnapura & Kalutara Districts',
     nutrition: 'Contains Hydroxycitric Acid (HCA); aids digestion.',
@@ -151,7 +144,6 @@ const PRODUCTS = [
     fullDescription: 'Crowning our spice collection, Pure Ceylon Whole Cardamom is sourced from the shaded, misty highlands of Sri Lanka where Elettaria cardamomum plants thrive in cool, humid conditions beneath forest canopies. Often dubbed the "Queen of Spices," cardamom is one of the world\'s most expensive and prized spices. Each plump green pod contains 15–20 tiny black seeds packed with an extraordinary concentration of volatile oils.',
     image: 'https://images.unsplash.com/photo-1763558049571-a6d12a85472e?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Premium',
     origin: 'Sri Lanka',
     region: 'Kandy & Nuwara Eliya Highlands',
     nutrition: 'Rich in cineole; supports digestion and breath freshness.',
@@ -171,7 +163,6 @@ const PRODUCTS = [
     fullDescription: 'Moringa oleifera — widely celebrated as the "Miracle Tree" or "Tree of Life" — grows prolifically across Sri Lanka\'s dry and intermediate zones, where the combination of tropical heat and fertile volcanic soils produces leaves of exceptional nutritional density. Our Moringa Powder is produced exclusively from young, freshly harvested leaves that are shade-dried at low temperatures (below 45°C) to protect heat-sensitive vitamins and enzymes from degradation.',
     image: 'https://images.unsplash.com/photo-1656850815262-2eed4ed82625?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Organic',
     origin: 'Sri Lanka',
     region: 'North Western & North Central Provinces',
     nutrition: 'Exceptionally high in Vitamins A, C, E, calcium, iron, and protein.',
@@ -191,7 +182,6 @@ const PRODUCTS = [
     fullDescription: 'Our Cinnamon Powder is produced by finely grinding premium Ceylon cinnamon quills (Cinnamomum verum) — the only true cinnamon — sourced from organically managed gardens in Matara and Galle, Sri Lanka. Ceylon cinnamon powder has a fundamentally different character from the ubiquitous Cassia powder: it is lighter in colour, significantly sweeter and more floral in aroma, and crucially, contains a fraction of the coumarin found in Cassia.',
     image: 'https://images.unsplash.com/photo-1682482002999-654860dfcb24?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Matara & Galle Districts',
     nutrition: 'Rich in cinnamaldehyde; supports blood sugar management.',
@@ -211,7 +201,6 @@ const PRODUCTS = [
     fullDescription: 'Curry leaves — Murraya koenigii — are a cornerstone of Sri Lankan, South Indian, and Southeast Asian cooking. Our Curry Leaves Powder is produced from fresh, organically grown leaves harvested from mature curry leaf trees in Sri Lanka\'s dry zone. The leaves are gently washed and shade-dried at low temperatures to preserve their delicate volatile oils, then stone-ground into a fine, dark green powder.',
     image: 'https://images.unsplash.com/photo-1656850815262-2eed4ed82625?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'North Central & Eastern Provinces',
     nutrition: 'Contains alkaloids, glycosides; supports healthy hair and digestion.',
@@ -231,7 +220,6 @@ const PRODUCTS = [
     fullDescription: 'Butterfly Pea Flower (Clitoria ternatea) is one of nature\'s most visually spectacular plants — a vivid cobalt-blue flowering vine used in traditional Ayurvedic medicine. Our powder is produced from hand-harvested flowers grown in Sri Lanka\'s dry zone, where intense sunshine produces petals with exceptionally high anthocyanin and flavonoid concentrations.',
     image: 'https://images.unsplash.com/photo-1631021967400-fbd3f722101c?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Rare',
     origin: 'Sri Lanka',
     region: 'North Central Province',
     nutrition: 'Rich in anthocyanins; powerful antioxidant properties.',
@@ -251,7 +239,6 @@ const PRODUCTS = [
     fullDescription: "Sri Lanka's coffee heritage predates its tea industry. Our Ceylon Pure Roast Coffee is sourced exclusively from single-origin Arabica and Robusta cultivars grown between 600–1,500 metres elevation in the Central Province. Each small batch is roasted using a slow, artisan drum-roasting method to a medium-dark profile that unlocks caramel sweetness, chocolate depth, and light dried fruit notes.",
     image: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Central Province Highlands',
     nutrition: 'Source of caffeine and antioxidants; supports mental alertness.',
@@ -271,7 +258,6 @@ const PRODUCTS = [
     fullDescription: 'Ceylon Black Tea is the ambassador of Sri Lanka to the world — a tea so iconic that the Lion logo on its packaging is a mark of quality recognised across 150+ nations. Our Pure Ceylon Black Tea is sourced from high-grown estate gardens situated above 1,200 metres in the Dimbula, Nuwara Eliya, and Uva regions.',
     image: 'https://images.unsplash.com/photo-1722653510627-29f99f804efd?w=600',
     sizes: ['2g x 10 bags', '2g x 20 bags'],
-    badge: 'Premium',
     origin: 'Sri Lanka',
     region: 'Dimbula, Nuwara Eliya & Uva Regions',
     nutrition: 'Contains theaflavins, thearubigins; rich in antioxidants.',
@@ -292,7 +278,6 @@ const PRODUCTS = [
     fullDescription: 'Ceylon Green Tea occupies a unique niche in the world of green teas. Unlike pan-fired Japanese styles or wok-roasted Chinese varieties, Ceylon green tea uses a steam-fixing method applied to Sri Lanka\'s distinctive Camellia sinensis cultivars. Our Green Tea is sourced from select high-elevation gardens where younger two-leaf-and-a-bud flushes are harvested and immediately steamed to halt oxidation.',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600',
     sizes: ['2g x 10 bags', '2g x 20 bags'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Nuwara Eliya & Kandy High Elevations',
     nutrition: 'High in EGCG catechins; supports metabolism and focus.',
@@ -313,7 +298,6 @@ const PRODUCTS = [
     fullDescription: 'Our Moringa Tea is a thoughtfully crafted fusion of two of Sri Lanka\'s most extraordinary plants: fine-grade Ceylon tea and certified organic moringa leaf powder. The moringa is shade-dried below 45°C to protect its heat-sensitive vitamins and enzymes, then carefully combined with tea in a balanced ratio.',
     image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600',
     sizes: ['2g x 10 bags', '2g x 20 bags'],
-    badge: 'Organic',
     origin: 'Sri Lanka',
     region: 'Multi-Region Blend',
     nutrition: 'Loaded with vitamins, minerals, and amino acids from moringa.',
@@ -334,7 +318,6 @@ const PRODUCTS = [
     fullDescription: 'Cinnamon Tea is perhaps the most quintessentially Sri Lankan of all our tea blends — a natural marriage of the country\'s two most famous exports. Our blend combines premium Ceylon black tea leaves with finely shredded authentic Ceylon cinnamon bark (Cinnamomum verum) — not flavouring, not oil, not Cassia, but real hand-shredded Ceylon true cinnamon.',
     image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600',
     sizes: ['2g x 10 bags', '2g x 20 bags'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Estate Tea + Matara/Galle Cinnamon',
     nutrition: 'Anti-inflammatory; supports blood sugar balance.',
@@ -355,7 +338,6 @@ const PRODUCTS = [
     fullDescription: 'Our Ginger Tea is a powerful wellness blend combining high-grade Ceylon black tea with dried, freshly sourced Ceylon ginger (Zingiber officinale). Sri Lanka\'s tropical climate and fertile soils produce ginger with a distinctively high gingerol and shogaol content — the bioactive compounds responsible for ginger\'s characteristic sharp heat and broad health benefits.',
     image: 'https://images.unsplash.com/photo-1575576703896-e71e3ee1f96c?w=600',
     sizes: ['2g x 10 bags', '2g x 20 bags'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Estate Tea + Southern Province Ginger',
     nutrition: 'Contains gingerol; anti-nausea and anti-inflammatory.',
@@ -376,7 +358,6 @@ const PRODUCTS = [
     fullDescription: 'Our Dehydrated Watermelon is produced from ripe, red-fleshed watermelons grown in Sri Lanka\'s dry zone. The fresh watermelons are carefully sorted for ripeness, sliced to a uniform thickness, and dehydrated using a precision low-temperature process (50–60°C over 12–18 hours) that preserves natural sugars, vitamins, and lycopene.',
     image: 'https://images.unsplash.com/photo-1589984662646-e7b2e4962f18?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'North Central Dry Zone',
     nutrition: 'Source of lycopene, Vitamins A and C.',
@@ -396,7 +377,6 @@ const PRODUCTS = [
     fullDescription: 'Sri Lanka produces some of the finest mangoes in Asia, with varieties including the prized Karthakolomban and Willard. Our Dehydrated Mango slices are produced from perfectly ripe, Grade A mangoes at the peak of season. No sulphur dioxide is used and no sugar is added — the natural sweetness of ripe Ceylon mango is entirely sufficient.',
     image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Bestseller',
     origin: 'Sri Lanka',
     region: 'Northern & Eastern Provinces',
     nutrition: 'Rich in Vitamin A, C, and dietary fibre.',
@@ -416,7 +396,6 @@ const PRODUCTS = [
     fullDescription: 'Ceylon papaya is cultivated throughout Sri Lanka\'s lowland tropical zones and is prized for its large, vibrant orange flesh and natural abundance of papain — one of the most effective natural digestive enzymes known. Our low-temperature process is specifically designed to maintain papain enzymatic activity.',
     image: 'https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Western & North Western Provinces',
     nutrition: 'Contains papain enzyme; aids digestion. Source of Vitamin C.',
@@ -436,7 +415,6 @@ const PRODUCTS = [
     fullDescription: 'Our Dehydrated Pineapple is produced from Ceylon pineapples characterised by their exceptional juiciness, high natural acidity-to-sweetness balance, and strong bromelain enzyme content. Our low-temperature dehydration process (55–60°C) is specifically calibrated to preserve bromelain activity, since bromelain begins to denature above 70°C.',
     image: 'https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'Western & Southern Coastal Zones',
     nutrition: 'Rich in bromelain; supports digestion and inflammation.',
@@ -456,7 +434,6 @@ const PRODUCTS = [
     fullDescription: 'Our Dehydrated Mix Fruit is a carefully curated medley of our finest individually dehydrated tropical fruits, blended in balanced proportions. The blend includes dehydrated mango, pineapple, papaya, watermelon, and seasonal additions. Each component is individually sorted and dehydrated using fruit-specific parameters.',
     image: 'https://images.unsplash.com/photo-1597371424128-8e879b34b5b0?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Popular',
     origin: 'Sri Lanka',
     region: 'Multi-Region Ceylon Fruits',
     nutrition: 'Varied vitamins, minerals, and natural fruit enzymes.',
@@ -476,7 +453,6 @@ const PRODUCTS = [
     fullDescription: 'Ceylon cashews are cultivated in the warm coastal zones of Sri Lanka. Our Whole Oven Cashew Nuts are produced from Grade W240 and W320 whole cashew kernels that are oven-roasted using a dry-heat method without any added oil, salt, or coatings. This produces a lighter, crispier texture allowing the natural creamy-sweet nuttiness to shine.',
     image: 'https://images.unsplash.com/photo-1604923232999-27afd87e5568?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: 'Premium',
     origin: 'Sri Lanka',
     region: 'North Western & Eastern Coastal Zones',
     nutrition: 'High in healthy monounsaturated fats, magnesium, and copper.',
@@ -496,7 +472,6 @@ const PRODUCTS = [
     fullDescription: "Our Ceylon Whole Roast Cashew Nuts feature a deeper, more traditional roasting profile that develops richer, more complex flavour through the Maillard reaction and caramelisation of natural sugars. As with our oven-roast version, we use only premium Grade W240 and W320 whole kernels, roasted dry without added oil, salt, or sugar.",
     image: 'https://images.unsplash.com/photo-1604923232999-27afd87e5568?w=600',
     sizes: ['25g', '50g', '75g', '100g'],
-    badge: null,
     origin: 'Sri Lanka',
     region: 'North Western & Eastern Coastal Zones',
     nutrition: 'Excellent source of protein, zinc, and heart-healthy fats.',
@@ -518,24 +493,6 @@ const CATEGORIES = [
   { value: 'fruits', label: 'Dehydrated Fruits' },
   { value: 'cashew', label: 'Ceylon Cashew' },
 ];
-
-function DetailGrid({ items }) {
-  return (
-    <div className="grid grid-cols-1 gap-3">
-      {items.map(({ icon: Icon, label, value }) => (
-        <div key={label} className="flex items-start gap-3 p-3 bg-[#FFF8E7]/60 rounded-xl border border-[#D4AF37]/15">
-          <div className="w-7 h-7 bg-white rounded-lg flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-            <Icon className="w-3.5 h-3.5 text-[#D4AF37]" />
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">{label}</p>
-            <p className="text-xs text-gray-800 leading-relaxed">{value}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
   const [activeTab, setActiveTab] = useState('overview');
@@ -610,11 +567,6 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
           {/* ── Image header — fixed height ── */}
           <div className="relative shrink-0" style={{ height: '200px' }}>
             <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
-            {product.badge && (
-              <span className="absolute top-3 left-3 bg-[#D4AF37] text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
-                {product.badge}
-              </span>
-            )}
             <div
               className="absolute inset-0"
               style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.30) 50%, transparent 100%)' }}
@@ -645,13 +597,12 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
             ))}
           </div>
 
-          {/* ── Tab content — NO scroll, everything fits ── */}
+          {/* ── Tab content ── */}
           <div className="flex-1 min-h-0 overflow-hidden">
 
-            {/* OVERVIEW — fits without scroll */}
+            {/* OVERVIEW */}
             {activeTab === 'overview' && (
               <div className="h-full flex flex-col p-4 gap-2.5">
-                {/* Quick info strip */}
                 <div className="flex gap-2 p-2.5 bg-[#FFF8E7] rounded-xl shrink-0">
                   <div className="text-center flex-1">
                     <MapPin className="w-3 h-3 text-[#D4AF37] mx-auto mb-0.5" />
@@ -672,7 +623,6 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
                   </div>
                 </div>
 
-                {/* Description — clamped to 3 lines with Read more toggle */}
                 <div className="shrink-0">
                   <p className={`text-xs text-gray-600 leading-relaxed ${descExpanded ? '' : 'line-clamp-3'}`}>
                     {product.fullDescription}
@@ -685,7 +635,6 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
                   </button>
                 </div>
 
-                {/* Flavour + Culinary — compact */}
                 <div className="grid grid-cols-2 gap-2 shrink-0">
                   <div className="p-2.5 border border-[#D4AF37]/20 rounded-xl bg-[#FFF8E7]/50">
                     <p className="text-[9px] font-bold text-[#7B3F00] uppercase tracking-wide mb-1">Flavour Profile</p>
@@ -697,7 +646,6 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
                   </div>
                 </div>
 
-                {/* Size selector + CTA */}
                 <div className="flex items-center justify-between gap-3 shrink-0 mt-auto">
                   <div>
                     <p className="text-[9px] text-gray-400 font-semibold uppercase tracking-wide mb-1">Select Size</p>
@@ -726,7 +674,7 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
               </div>
             )}
 
-            {/* NUTRITION — fits without scroll */}
+            {/* NUTRITION */}
             {activeTab === 'nutrition' && (
               <div className="h-full flex flex-col p-4 gap-2.5">
                 <div className="p-3 bg-[#FFF8E7] rounded-xl border border-[#D4AF37]/20 shrink-0">
@@ -748,7 +696,7 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
               </div>
             )}
 
-            {/* DETAILS — compact grid, fits without scroll */}
+            {/* DETAILS */}
             {activeTab === 'details' && (
               <div className="h-full p-4">
                 <div className="grid grid-cols-1 gap-2 h-full">
@@ -773,7 +721,7 @@ function ProductModal({ product, onClose, onPrev, onNext, hasPrev, hasNext }) {
               </div>
             )}
 
-            {/* BREWING — fits without scroll */}
+            {/* BREWING */}
             {activeTab === 'brewing' && product.brewingGuide && (
               <div className="h-full flex flex-col p-4 gap-2.5">
                 <div className="p-3 bg-[#FFF8E7] rounded-xl border border-[#D4AF37]/20 shrink-0">
@@ -828,14 +776,12 @@ export function ProductsPage() {
     return matchCat && matchSearch;
   });
 
-  // Navigate through the full product list (not just filtered)
   const currentModalIndex = modalProduct ? PRODUCTS.findIndex(p => p.id === modalProduct.id) : -1;
   const handlePrev = () => { if (currentModalIndex > 0) setModalProduct(PRODUCTS[currentModalIndex - 1]); };
   const handleNext = () => { if (currentModalIndex < PRODUCTS.length - 1) setModalProduct(PRODUCTS[currentModalIndex + 1]); };
 
   return (
     <div className="min-h-screen bg-[#FFF8E7] pt-24 pb-16">
-      {/* Header */}
       <br />
       <div className="bg-white shadow-md mb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
@@ -921,11 +867,6 @@ export function ProductsPage() {
                       alt={product.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    {product.badge && (
-                      <span className="absolute top-3 left-3 bg-[#D4AF37] text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
-                        {product.badge}
-                      </span>
-                    )}
                   </div>
                   <div className="p-4 flex flex-col flex-1">
                     <h3

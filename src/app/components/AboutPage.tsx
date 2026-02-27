@@ -187,7 +187,7 @@ export function AboutPage({ onNavigate }) {
                 we've built a reputation for delivering authentic, premium-quality spices to discerning buyers worldwide.
               </p>
               <p className="text-gray-700 mb-4 leading-relaxed text-justify">
-                Our state-of-the-art facilities in Kelaniya, Sri Lanka, are equipped with the latest
+                Our state-of-the-art facilities in Andiambelame, Sri Lanka, are equipped with the latest
                 processing technology while maintaining respect for time-honored cultivation and harvesting methods
                 that have made Ceylon spices legendary for over 2,000 years.
               </p>
@@ -210,7 +210,7 @@ export function AboutPage({ onNavigate }) {
                   <p className="text-white text-lg md:text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>
                     Over 25 Years of Ceylon Spice Excellence
                   </p>
-                  <p className="text-[#D4AF37] text-sm mt-1">Kelaniya, Sri Lanka</p>
+                  <p className="text-[#D4AF37] text-sm mt-1">Andiambelame, Sri Lanka</p>
                 </div>
               </div>
             </div>
