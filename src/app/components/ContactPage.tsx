@@ -451,7 +451,7 @@ export function ContactPage({ onOpenChatbot }: ContactPageProps) {
                       <p className="font-bold text-[#D4AF37] text-xs uppercase tracking-wider mb-1">Address</p>
                       <p className="font-semibold text-gray-800">Buddhi Product</p>
                       <p className="text-gray-500 text-xs italic mb-1">Pure Ceylon Excellence</p>
-                      <p className="text-gray-600">392/A, Jayamawatha, Andiambelame,</p>
+                      <p className="text-gray-600">392/A, Jayamawatha, Andiambalama,</p>
                       <p className="text-gray-600">Sri Lanka. P.O.C. 11558</p>
                     </div>
                   </div>

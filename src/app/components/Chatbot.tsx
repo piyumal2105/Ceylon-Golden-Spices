@@ -39,7 +39,7 @@ const CONTACT = {
   email: 'info@ceylongoldenspices.com',
   hotline: '+94 71 565 5855',
   whatsapp: '+94 71 565 5855',
-  address: '392/A, Jayamawatha, Andiambelame, Sri Lanka. Po.C. 11558',
+  address: '392/A, Jayamawatha, Andiambalama, Sri Lanka. Po.C. 11558',
   facebook: 'https://www.facebook.com/profile.php?id=100090809895923',
   instagram: 'https://www.instagram.com/buddhiproduct/',
   pinterest: 'https://www.pinterest.com/Wddb1234/',
