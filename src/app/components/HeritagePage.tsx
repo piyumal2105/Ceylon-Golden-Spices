@@ -21,7 +21,6 @@ function ImageSlider({ images, autoPlayInterval = 4000 }) {
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
   const next = () => setCurrent((c) => (c + 1) % images.length);
 
-  // Auto-slide — resets cleanly on unmount
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % images.length);
@@ -146,7 +145,7 @@ export function HeritagePage() {
   return (
     <div className="min-h-screen pt-20" style={{ fontFamily: "'Georgia', serif" }}>
 
-      {/*  Hero  */}
+      {/* Hero */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -154,12 +153,12 @@ export function HeritagePage() {
             alt="Ancient Ceylon spice heritage — Sigiriya rock fortress with traditional spice market in the foreground"
             className="w-full h-full object-cover object-top"
           />
-          {/* Light at top so Sigiriya stays visible, darker at bottom for text readability */}
+          {/* Stronger darkening overlay so all text is legible over the bright background */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.45) 65%, rgba(0,0,0,0.72) 100%)'
+                'linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.42) 30%, rgba(0,0,0,0.62) 65%, rgba(0,0,0,0.80) 100%)'
             }}
           />
         </div>
@@ -170,18 +169,34 @@ export function HeritagePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[#D4AF37] text-sm uppercase tracking-[0.3em] mb-4 font-sans">
-              Ceylon Golden Spices
-            </p>
+            {/* ✅ CHANGED: "CEYLON GOLDEN SPICES" label — white text with gold border pill for strong contrast */}
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="w-8 h-px bg-[#D4AF37]"></span>
+              <p className="text-white font-bold text-sm uppercase tracking-[0.3em] font-sans drop-shadow-lg"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>
+                Ceylon Golden Spices
+              </p>
+              <span className="w-8 h-px bg-[#D4AF37]"></span>
+            </div>
+
             <h1
-              className="text-6xl md:text-7xl mb-6 leading-tight drop-shadow-2xl"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="text-6xl md:text-7xl mb-6 leading-tight drop-shadow-2xl text-white"
+              style={{
+                fontFamily: 'Playfair Display, serif',
+                textShadow: '0 4px 20px rgba(0,0,0,0.8)'
+              }}
             >
               2,000 Years of Ceylon<br />Spice Excellence
             </h1>
-            <p className="text-xl md:text-2xl mb-10 text-[#D4AF37] font-sans font-light drop-shadow-lg">
+
+            {/* ✅ CHANGED: subtitle — white text with dark shadow for full visibility over bright mid-tones */}
+            <p
+              className="text-xl md:text-2xl mb-10 font-sans font-semibold text-white drop-shadow-xl"
+              style={{ textShadow: '0 3px 16px rgba(0,0,0,0.95)' }}
+            >
               Discover Why Ceylon Spices Are the World's Finest
             </p>
+
             <a
               href="#heritage-story"
               className="inline-block bg-[#D4AF37] hover:bg-[#C09F2F] text-white px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105 shadow-2xl font-sans"
@@ -191,6 +206,7 @@ export function HeritagePage() {
           </motion.div>
         </div>
       </section>
+
       <section id="heritage-story" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -239,7 +255,7 @@ export function HeritagePage() {
         </div>
       </section>
 
-      {/*  Why Sri Lanka Produces Superior Spices  */}
+      {/* Why Sri Lanka Produces Superior Spices */}
       <section className="py-20 bg-[#FFF8E7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -293,7 +309,6 @@ export function HeritagePage() {
                     viewport={{ once: true }}
                     className="relative bg-white p-6 rounded-xl hover:shadow-xl transition-all group overflow-hidden border border-[#E8D5B0]/60"
                   >
-                    {/* Subtle hover background image */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500">
                       <img
                         src={advantage.bgImage}
@@ -327,7 +342,7 @@ export function HeritagePage() {
         </div>
       </section>
 
-      {/*  The Ceylon Difference  */}
+      {/* The Ceylon Difference */}
       <section className="py-20 bg-[#0A2647] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -346,7 +361,6 @@ export function HeritagePage() {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            {/* Auto-Sliding Image Slider — 4 second interval */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -409,7 +423,7 @@ export function HeritagePage() {
         </div>
       </section>
 
-      {/* ── Certifications Roadmap ───────────────────────────────────────────── */}
+      {/* Certifications Roadmap */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -423,56 +437,88 @@ export function HeritagePage() {
             <p className="text-xl text-gray-700 font-sans">
               Building Trust Through International Standards
             </p>
+            <p className="text-base text-gray-500 mt-3 max-w-2xl mx-auto font-sans">
+              We are actively working towards internationally recognised certifications
+              to ensure our products meet the highest global standards.
+            </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid sm:grid-cols-2 gap-5">
             {[
-              { name: 'ISO 22000', status: 'In Progress', progress: 75, target: '2025 Q2', icon: ShieldCheck },
-              { name: 'HACCP', status: 'Preparing', progress: 45, target: '2026', icon: Award },
-              { name: 'Organic Certification', status: 'Evaluation', progress: 30, target: 'Future', icon: Leaf },
-              { name: 'Fair Trade', status: 'Goal', progress: 15, target: 'Future', icon: Star }
+              {
+                name: 'ISO 22000',
+                description: 'Food Safety Management System — ensuring our processes meet international food safety requirements from farm to export.',
+                icon: ShieldCheck,
+                status: 'In Progress',
+                statusStyle: 'bg-amber-100 text-amber-700 border border-amber-300'
+              },
+              {
+                name: 'HACCP',
+                description: 'Hazard Analysis & Critical Control Points — a systematic preventive approach to food safety throughout our supply chain.',
+                icon: Award,
+                status: 'In Progress',
+                statusStyle: 'bg-amber-100 text-amber-700 border border-amber-300'
+              },
+              {
+                name: 'Organic Certification',
+                description: 'Recognising our commitment to natural, chemical-free cultivation methods that protect both our products and the environment.',
+                icon: Leaf,
+                status: 'In Progress',
+                statusStyle: 'bg-amber-100 text-amber-700 border border-amber-300'
+              },
+              {
+                name: 'Fair Trade',
+                description: 'Affirming our dedication to fair wages, ethical sourcing, and sustainable livelihoods for our farming communities.',
+                icon: Star,
+                status: 'In Progress',
+                statusStyle: 'bg-amber-100 text-amber-700 border border-amber-300'
+              }
             ].map((cert, index) => {
               const Icon = cert.icon;
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="bg-[#FFF8E7] p-6 rounded-xl border border-[#E8D5B0]/60"
+                  className="bg-[#FFF8E7] p-6 rounded-xl border border-[#E8D5B0]/60 hover:shadow-lg transition-all group"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-[#D4AF37]/30">
-                        <Icon className="w-5 h-5 text-[#D4AF37]" />
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start gap-4 flex-1">
+                      <div className="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-[#D4AF37]/30 group-hover:bg-[#D4AF37] transition-colors duration-300">
+                        <Icon className="w-5 h-5 text-[#D4AF37] group-hover:text-white transition-colors duration-300" />
                       </div>
-                      <h4
-                        className="text-xl font-bold text-[#7B3F00]"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {cert.name}
-                      </h4>
+                      <div className="flex-1">
+                        <h4
+                          className="text-xl font-bold text-[#7B3F00] mb-2"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          {cert.name}
+                        </h4>
+                        <p className="text-gray-600 text-sm font-sans leading-relaxed">
+                          {cert.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-sm font-semibold text-[#D4AF37] font-sans">{cert.status}</div>
-                      <div className="text-xs text-gray-600 font-sans">Target: {cert.target}</div>
-                    </div>
+                    <span className={`flex-shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full font-sans whitespace-nowrap ${cert.statusStyle}`}>
+                      {cert.status}
+                    </span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${cert.progress}%` }}
-                      transition={{ duration: 1.2, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="h-full bg-gradient-to-r from-[#D4AF37] to-[#C09F2F] rounded-full"
-                    />
-                  </div>
-                  <div className="text-xs text-gray-600 mt-1 font-sans">{cert.progress}% Complete</div>
                 </motion.div>
               );
             })}
           </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center text-sm text-gray-400 mt-8 font-sans"
+          >
+            Our ISO 22000 certification process is currently underway. All other certifications are on our roadmap as we continue to grow.
+          </motion.p>
         </div>
       </section>
 

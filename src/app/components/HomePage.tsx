@@ -1,5 +1,5 @@
 import { motion, useInView } from 'motion/react';
-import { ChevronDown, Leaf, Award, Globe, Package, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronDown, Leaf, Handshake, Globe, Package, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
 // Images imports
@@ -58,7 +58,7 @@ function AnimatedCounter({ target, suffix = '', duration = 2000 }: CounterProps)
 }
 
 const STATS = [
-  { value: 25, suffix: '+', label: 'Years Experience' },
+  { value: 5, suffix: '+', label: 'Years Experience' },
   { value: 50, suffix: '+', label: 'Countries Served' },
   { value: 25, suffix: '+', label: 'Premium Products' },
 ];
@@ -124,19 +124,20 @@ export function HomePage({ onNavigate }: HomePageProps) {
   const usps = [
     {
       title: 'Pure Ceylon Origin',
-      description: 'Sourced directly from authentic Sri Lankan estates',
+      description: 'Sourced directly from authentic Sri Lankan estates with full traceability from farm to shipment.',
       video: 'https://images.unsplash.com/photo-1649853761620-c6588c980545?w=800',
       icon: Leaf
     },
     {
-      title: 'Export Quality Standards',
-      description: 'Working towards ISO 22000 & HACCP certification',
-      video: 'https://images.unsplash.com/photo-1666039438492-02a95ecd70c3?w=800',
-      icon: Award
+      // ✅ CHANGED: Replaced "Export Quality Standards" (ISO/HACCP) with "Direct Farmer Partnerships"
+      title: 'Direct Farmer Partnerships',
+      description: 'We work hand-in-hand with local Sri Lankan farmers and estates, ensuring fair practices, fresh harvests, and full control over product quality from the source.',
+      video: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800',
+      icon: Handshake
     },
     {
       title: 'Global Partnership Ready',
-      description: 'Complete export documentation and worldwide shipping',
+      description: 'Complete export documentation and worldwide shipping to support buyers across Europe, the Middle East, Asia, Africa, and Australia.',
       video: 'https://images.unsplash.com/photo-1739204618173-3e89def7140f?w=800',
       icon: Globe
     }
@@ -410,7 +411,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <p className="text-xl text-gray-300">Your trusted partner for authentic Ceylon spices</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
             {usps.map((usp, index) => {
               const Icon = usp.icon;
               return (
@@ -420,18 +421,18 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.2 }}
                   viewport={{ once: true }}
-                  className="relative group"
+                  className="relative group h-full"
                 >
                   <div className="absolute inset-0 rounded-2xl overflow-hidden opacity-20 group-hover:opacity-30 transition-opacity">
                     <img src={usp.video} alt="" className="w-full h-full object-cover" />
                   </div>
 
-                  <div className="relative bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37] transition-all">
-                    <div className="w-16 h-16 bg-[#D4AF37] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <div className="relative bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37] transition-all h-full flex flex-col">
+                    <div className="w-16 h-16 bg-[#D4AF37] rounded-full flex items-center justify-center mb-6 flex-shrink-0 group-hover:scale-110 transition-transform">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-[#D4AF37]">{usp.title}</h3>
-                    <p className="text-gray-300 leading-relaxed">{usp.description}</p>
+                    <p className="text-gray-300 leading-relaxed flex-grow">{usp.description}</p>
                   </div>
                 </motion.div>
               );
