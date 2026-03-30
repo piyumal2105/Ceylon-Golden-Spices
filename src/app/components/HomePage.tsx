@@ -21,6 +21,8 @@ import Image15 from "../components/assets/Home/image14.jpg";
 import Image16 from "../components/assets/Home/image15.webp";
 import Image17 from "../components/assets/Home/image16.jpg";
 import Image18 from "../components/assets/Home/image17.jpg";
+import Image19 from "../components/assets/Home/image18.jpg";
+import Image20 from "../components/assets/Home/image19.jpg";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -163,7 +165,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src={Image12}
+            src={Image20}
             alt="Authentic Ceylon spices — golden heritage of Sri Lanka"
             className="w-full h-full object-cover object-center"
           />

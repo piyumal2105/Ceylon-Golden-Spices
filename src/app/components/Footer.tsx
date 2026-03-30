@@ -122,7 +122,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 </a>
                 {/* TikTok */}
                 <a
-                  href="https://www.tiktok.com/@buddhiproduct"
+                  href="https://www.tiktok.com/@ceylongoldenspices?lang=en"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 md:w-10 md:h-10 border-2 border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] transition-all group"
