@@ -9,15 +9,17 @@ import Image06 from "../components/assets/Global/image01.png";
 import Image07 from "../components/assets/Heritage/image06.jpg";
 import Image08 from "../components/assets/Heritage/image07.webp";
 import Image09 from "../components/assets/Heritage/image08.jpg";
-
-import Video01 from "../components/assets/Heritage/video01.MOV";
-
 import Image10 from "../components/assets/Heritage/image14.jpeg";
 import Image11 from "../components/assets/Heritage/image09.jpeg";
 import Image12 from "../components/assets/Heritage/image10.jpeg";
 import Image13 from "../components/assets/Heritage/image11.jpeg";
 import Image14 from "../components/assets/Heritage/image12.jpeg";
 import Image15 from "../components/assets/Heritage/image13.jpeg";
+import Image16 from "../components/assets/Heritage/image15.jpeg";
+import Image17 from "../components/assets/Heritage/image15.jpeg";
+import Image18 from "../components/assets/Heritage/image16.jpeg";
+
+import Video01 from "../components/assets/Heritage/video01.MOV";
 
 interface SliderImage {
   src: string;
@@ -216,9 +218,9 @@ export function HeritagePage() {
 
   const ceylonSliderImages: SliderImage[] = [
     { src: Image02, alt: 'Ceylon cinnamon quills', caption: 'Hand Rolled Ceylon Cinnamon Quills' },
-    { src: Image08, alt: 'Spice harvesting', caption: 'Traditional Harvest Methods' },
+    { src: Image17, alt: 'Spice harvesting', caption: 'Traditional Harvest Methods' },
     { src: Image04, alt: 'Tea plantation', caption: 'Sri Lankan Tea Plantations' },
-    { src: Image09, alt: 'Spice processing', caption: 'Meticulous Quality Processing' },
+    { src: Image18, alt: 'Spice processing', caption: 'Meticulous Quality Processing' },
     { src: Image06, alt: 'Ceylon spice quality', caption: 'Export Grade Premium Quality' },
   ];
 

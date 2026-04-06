@@ -59,7 +59,6 @@ export function Footer({ onNavigate }: FooterProps) {
                 <p className="text-white text-xs md:text-sm font-semibold leading-tight">Buddhi Product</p>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -85,8 +84,8 @@ export function Footer({ onNavigate }: FooterProps) {
               </p>
               <div className="flex items-center gap-3">
                 {/* Facebook */}
-                <a
-                  href="https://www.facebook.com/profile.php?id=100090809895923"
+
+                <a href="https://www.facebook.com/profile.php?id=100090809895923"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 md:w-10 md:h-10 border-2 border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] transition-all group"
@@ -97,8 +96,8 @@ export function Footer({ onNavigate }: FooterProps) {
                   </svg>
                 </a>
                 {/* Pinterest */}
-                <a
-                  href="https://www.pinterest.com/Wddb1234/"
+
+                <a href="https://www.pinterest.com/Wddb1234/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 md:w-10 md:h-10 border-2 border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] transition-all group"
@@ -109,8 +108,8 @@ export function Footer({ onNavigate }: FooterProps) {
                   </svg>
                 </a>
                 {/* Instagram */}
-                <a
-                  href="https://www.instagram.com/buddhiproduct/"
+
+                <a href="https://www.instagram.com/buddhiproduct/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 md:w-10 md:h-10 border-2 border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] transition-all group"
@@ -121,8 +120,8 @@ export function Footer({ onNavigate }: FooterProps) {
                   </svg>
                 </a>
                 {/* TikTok */}
-                <a
-                  href="https://www.tiktok.com/@ceylongoldenspices?lang=en"
+
+                <a href="https://www.tiktok.com/@ceylongoldenspices?lang=en"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 md:w-10 md:h-10 border-2 border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] transition-all group"
@@ -220,7 +219,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     </a>
                   </div>
 
-                  {/* Hotline — not WhatsApp */}
+                  {/* Hotline */}
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />
                     <a
@@ -234,7 +233,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     </a>
                   </div>
 
-                  {/* WhatsApp number */}
+                  {/* WhatsApp */}
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />
                     <a
@@ -261,10 +260,14 @@ export function Footer({ onNavigate }: FooterProps) {
       <div className="bg-[#081A2E] text-gray-400 py-4 md:py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-            <div className="flex items-center gap-2 text-xs md:text-sm text-center md:text-left">
+
+            {/* Copyright */}
+            <div className="flex items-center gap-2 text-xs md:text-sm whitespace-nowrap">
               <span>{currentYear} © BUDDHI PRODUCT | CEYLON GOLDEN SPICES. ALL RIGHTS RESERVED.</span>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-xs md:text-sm">
+
+            {/* Policy Links */}
+            <div className="flex items-center justify-center gap-2 md:gap-4 text-[10px] md:text-xs whitespace-nowrap">
               {[
                 { label: 'Privacy Policy', page: 'privacy-policy' },
                 { label: 'Terms of Service', page: 'terms-of-service' },
@@ -278,14 +281,24 @@ export function Footer({ onNavigate }: FooterProps) {
                   >
                     {label}
                   </button>
-                  {i < arr.length - 1 && <span className="hidden sm:inline">|</span>}
+                  {i < arr.length - 1 && <span>|</span>}
                 </>
               ))}
             </div>
-            <div className="hidden md:flex items-center gap-2 text-xs md:text-sm">
-              <span>CREATED WITH</span>
-              <span className="text-red-500">❤️</span>
+
+            {/* Created By */}
+            <div className="hidden md:flex items-center gap-2 text-xs md:text-sm whitespace-nowrap">
+              <span>CREATED BY</span>
+              <a
+                href="https://piyumal2105.github.io/Portfolio_Piyumal_Madhuwantha/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#D4AF37] hover:text-white transition-colors font-semibold hover:underline"
+              >
+                Piyumal Madhuwantha
+              </a>
             </div>
+
           </div>
         </div>
       </div>

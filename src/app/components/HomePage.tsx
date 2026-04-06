@@ -24,6 +24,8 @@ import Image18 from "../components/assets/Home/image17.jpg";
 import Image19 from "../components/assets/Home/image18.jpg";
 import Image20 from "../components/assets/Home/image19.jpg";
 import Image21 from "../components/assets/Home/image20.jpg";
+import Image22 from "../components/assets/Home/image21.jpeg";
+import Image23 from "../components/assets/Home/image22.jpeg";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -107,12 +109,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
       description: 'Spice Cultivation In Traditional Ceylon Gardens'
     },
     {
-      image: { src: Image16, alt: 'Harvesting spices in Ceylon' },
+      image: { src: Image22, alt: 'Harvesting spices in Ceylon' },
       title: 'Harvesting',
       description: 'Hand Picking Premium Quality Spices'
     },
     {
-      image: { src: Image17, alt: 'Traditional drying and processing of spices in Ceylon' },
+      image: { src: Image23, alt: 'Traditional drying and processing of spices in Ceylon' },
       title: 'Processing',
       description: 'Traditional Drying And Processing Methods'
     },

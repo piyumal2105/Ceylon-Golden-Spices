@@ -225,7 +225,7 @@ export function CookiePolicyPage({ onNavigate }: CookiePolicyPageProps) {
             <div className="space-y-2 text-gray-700">
               <p><strong className="text-[#7B3F00]">Ceylon Golden Spices</strong></p>
               <p>Website: <a href="https://www.ceylongoldenspices.com" className="text-[#D4AF37] hover:underline">www.ceylongoldenspices.com</a></p>
-              <p>Email: <a href="mailto:sales@imperialspices.lk" className="text-[#D4AF37] hover:underline">sales@imperialspices.lk</a></p>
+              <p>Email: <a href="mailto:info@ceylongoldenspices.com" className="text-[#D4AF37] hover:underline">info@ceylongoldenspices.com</a></p>
               <p>Phone: <a href="tel:+94112904000" className="text-[#D4AF37] hover:underline">+94 11 290 4000</a></p>
             </div>
           </div>
